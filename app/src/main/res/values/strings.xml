@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name">ProjetoFinalZup</string>
     <string name="qrcode">Scan QR Code</string>
-    <string name=""></string>
 
     <!-- Descriptions -->
 
-    <string name="round_logo"></string>
-    <string name=""></string>
-    <string name=""></string>
-    <string name=""></string>
+    <string name="round_logo">Círculo com um traço da direita</string>
+    <string name="description_closed">Imagem com as letras do logo "Ta ná mão"</string>
+    <string name="closed_order">Pedido Fechado!</string>
+    <string name="new_order">novo pedido</string>
+    <string name="letters_logo"></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
