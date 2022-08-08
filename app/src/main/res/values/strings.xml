@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ProjetoFinalZup</string>
+    <string name="qrcode">Scan QR Code</string>
+    <string name=""></string>
+
+    <!-- Descriptions -->
+
+    <string name="round_logo"></string>
+    <string name=""></string>
+    <string name=""></string>
+    <string name=""></string>
 </resources>
