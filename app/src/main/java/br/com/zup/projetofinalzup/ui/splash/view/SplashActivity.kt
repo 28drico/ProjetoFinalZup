@@ -3,9 +3,8 @@ package br.com.zup.projetofinalzup.ui.splash.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import br.com.zup.projetofinalzup.MainActivity
 import br.com.zup.projetofinalzup.databinding.ActivitySplashBinding
-import br.com.zup.projetofinalzup.ui.home.HomeActivity
+import br.com.zup.projetofinalzup.ui.home.view.HomeActivity
 import java.util.*
 
 class SplashActivity : AppCompatActivity() {
