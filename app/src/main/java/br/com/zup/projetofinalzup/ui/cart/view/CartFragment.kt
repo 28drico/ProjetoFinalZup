@@ -1,4 +1,4 @@
-package br.com.zup.projetofinalzup.ui.menu.view
+package br.com.zup.projetofinalzup.ui.cart.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.zup.projetofinalzup.R
 
-class MenuFragment : Fragment() {
+class CartFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_menu2, container, false)
+        return inflater.inflate(R.layout.fragment_cartt, container, false)
     }
 }
