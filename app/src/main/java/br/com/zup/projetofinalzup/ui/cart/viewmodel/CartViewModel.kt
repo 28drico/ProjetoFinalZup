@@ -1,4 +1,8 @@
 package br.com.zup.projetofinalzup.ui.cart.viewmodel
 
-class CartViewModel {
+import android.app.Application
+import br.com.zup.projetofinalzup.domain.usecase.DishesUseCase
+
+class CartViewModel(application: Application){
+    private val useCase = DishesUseCase(application)
 }
