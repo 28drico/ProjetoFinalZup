@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:text="@string/closed_order"
         android:textColor="@color/light_gray"
-        android:textSize="30sp"
-        android:layout_marginTop="50dp"
+        android:textSize="@dimen/text_30"
+        android:layout_marginTop="@dimen/size_50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -27,9 +27,9 @@
         android:layout_height="wrap_content"
         android:text="@string/description_closed"
         android:textColor="@color/light_gray"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_18"
         android:textAlignment="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/size_20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvClosedOrderTitle"/>
@@ -41,29 +41,29 @@
         android:text="@string/new_order"
         android:textColor="@color/dark_gray"
         android:backgroundTint="@color/light_gray"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/size_40"
         app:layout_constraintTop_toBottomOf="@id/tvClosedOrderDescrip"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
         android:id="@+id/tvLogo"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="@dimen/size_70"
+        android:layout_height="@dimen/size_70"
         android:src="@drawable/white_logo"
         android:contentDescription="@string/round_logo"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/size_50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bvNewOrder"/>
 
     <ImageView
         android:id="@+id/tvLogoLetters"
-        android:layout_width="220dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/size_200"
+        android:layout_height="@dimen/size_100"
         android:src="@drawable/tana_whitelogo"
         android:contentDescription="@string/letters_logo"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/size_10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvLogo"/>
