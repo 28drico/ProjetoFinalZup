@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import br.com.zup.projetofinalzup.R
 
 class MenuFragment : Fragment() {
@@ -15,4 +16,11 @@ class MenuFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_menu2, container, false)
     }
+
+    private fun clickfavorito(){
+        //implementar o toast favorito e disfavorito
+    }
+
+
+
 }
