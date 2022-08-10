@@ -21,6 +21,10 @@ class MenuFragment : Fragment() {
         //implementar o toast favorito e disfavorito
     }
 
+    private fun statusfavorito(){
+        //implementar codigo status favorito e disfavorito
+    }
+
 
 
 }
