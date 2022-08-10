@@ -10,9 +10,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="70dp"
+        android:layout_width="@dimen/size_200"
+        android:layout_height="@dimen/size_200"
+        android:layout_marginTop="@dimen/size_70"
         android:src="@drawable/white_logo"
         android:contentDescription="@string/round_logo"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
@@ -24,8 +24,8 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="@dimen/size_30"
+        android:layout_marginEnd="@dimen/size_30"
         android:src="@drawable/tana_whitelogo"
         android:contentDescription="@string/letters_logo"
         app:layout_constraintEnd_toEndOf="parent"

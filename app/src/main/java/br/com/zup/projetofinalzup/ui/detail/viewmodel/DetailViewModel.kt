@@ -1,4 +1,8 @@
 package br.com.zup.projetofinalzup.ui.detail.viewmodel
 
-class DetailViewModel {
+import android.app.Application
+import br.com.zup.projetofinalzup.domain.usecase.DishesUseCase
+
+class DetailViewModel(application: Application){
+    private val useCase = DishesUseCase(application)
 }
