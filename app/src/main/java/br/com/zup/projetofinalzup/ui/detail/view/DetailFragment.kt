@@ -60,5 +60,17 @@ class DetailFragment : Fragment() {
         viewModel.disfavorPersonagens(cardapio)
     }
 
+    private fun statusfavorito(cardapio: CardapioResult){
+        binding.ivFavorite.setImageDrawable(
+            ContextCompat.getDrawable(
+                binding.root.context,
+                if(cardapio.isFavorite) {
+                    R.drawable.fav_icon
+                } else {
+                    R.drawable.notfav_icon
+                }
+            )
+        )
+    }
 
 }
