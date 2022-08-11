@@ -5,5 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CardapioResult (
+
     var isFavorite : Boolean
+
 ): Parcelable
