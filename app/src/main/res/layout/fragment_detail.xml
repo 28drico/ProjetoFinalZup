@@ -2,7 +2,6 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,10 +10,10 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/ivDetail"
+            android:id="@+id/ivItemDetail"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_200"
-            android:src="@drawable/tana_blacklogo"
+            android:src="@drawable/app_icon"
             android:contentDescription="@string/letters_logo"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
@@ -22,25 +21,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvMovieTitle"
-            android:layout_width="0dp"
+            android:id="@+id/tvItemTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/size_16dp"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="@string/item_title"
+            android:layout_marginTop="@dimen/size_20"
+            app:layout_constraintTop_toBottomOf="@id/ivItemDetail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Título do Filme"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/tvMovieSinopse"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/tvMovieTitle"
-            app:layout_constraintStart_toStartOf="@+id/tvMovieTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvMovieTitle"
-            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/ivFavorite"
@@ -51,7 +39,29 @@
             android:foregroundGravity="right"
             android:src="@drawable/notfav_icon"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@id/ivItemDetail"/>
+
+
+        <TextView
+            android:id="@+id/tvItemDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/item_desc"
+            android:layout_marginTop="@dimen/size_20"
+            app:layout_constraintTop_toBottomOf="@id/tvItemTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvItemPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/item_price"
+            android:layout_marginTop="@dimen/size_20"
+            app:layout_constraintTop_toBottomOf="@id/tvItemDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

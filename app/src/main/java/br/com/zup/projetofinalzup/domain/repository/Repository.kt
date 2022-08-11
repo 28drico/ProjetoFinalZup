@@ -1,9 +1,9 @@
 package br.com.zup.projetofinalzup.domain.repository
 
 import br.com.zup.projetofinalzup.data.datasource.local.Dao.FavoriteListDAO
+import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
 import br.com.zup.projetofinalzup.data.datasource.remote.Response
 import br.com.zup.projetofinalzup.data.datasource.remote.RetrofitService
-import br.com.zup.projetofinalzup.data.datasource.teste.Item
 
 class Repository(private val dao: FavoriteListDAO){
 
@@ -11,13 +11,13 @@ class Repository(private val dao: FavoriteListDAO){
         return RetrofitService.apiService.getMenu()
     }
 
-    fun updateFavoritedList(menu:Item){
+    fun updateFavoritedList(menu:MenuItem){
         dao.updateFavoritedItems(menu)
     }
-    fun getFavoritedList():List<Item> = dao.getFavoritedItems()
+    fun getFavoritedList():List<MenuItem> = dao.getFavoritedItems()
 
-    fun insertDatabaseList(list:List<Item>){
+    fun insertDatabaseList(list:List<MenuItem>){
         dao.insertList(list)
     }
-    fun getLocalList():List<Item> = dao.getMenu()
+    fun getLocalList():List<MenuItem> = dao.getMenu()
 }

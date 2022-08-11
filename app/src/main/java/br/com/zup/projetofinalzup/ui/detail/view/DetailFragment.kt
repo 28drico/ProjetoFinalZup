@@ -10,7 +10,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import br.com.zup.projetofinalzup.R
 import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
-import br.com.zup.projetofinalzup.data.datasource.teste.Item
 import br.com.zup.projetofinalzup.databinding.FragmentDetailBinding
 import br.com.zup.projetofinalzup.ui.DESFAVORITADO
 import br.com.zup.projetofinalzup.ui.FAVORITADO_SUCESSO
@@ -30,11 +29,11 @@ class DetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
-    private fun favoritedItem(item: Item){
+    private fun favoritedItem(item: MenuItem){
         binding.ivFavorite.setOnClickListener {
-            menu.isFavorite = !menu.isFavorite
+            item.isFavorite = !item.isFavorite
 
-            if (menu.isFavorite){
+            if (item.isFavorite){
                 Toast.makeText(
                     context,
                     FAVORITADO_SUCESSO,
@@ -50,11 +49,11 @@ class DetailFragment : Fragment() {
     }
 
 
-    private fun statusfavorito(menu: MenuItem){
+    private fun FavoritedStatus(item: MenuItem){
         binding.ivFavorite.setImageDrawable(
             ContextCompat.getDrawable(
                 binding.root.context,
-                if(menu.isFavorite) {
+                if(item.isFavorite) {
                     R.drawable.fav_icon
                 } else {
                     R.drawable.notfav_icon
