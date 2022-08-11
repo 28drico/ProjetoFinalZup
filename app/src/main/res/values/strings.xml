@@ -26,8 +26,5 @@
     <string name="qrcode_ic">Ícone de um qrcode com uma lupa</string>
     <string name="fav_ic">Ícone de coração na cor cinza</string>
     <string name="disfav_ic">ícone de coração sem preenchimento com contorno preto</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="coracao_favorito">coração_favorito</string>
 
 </resources>
