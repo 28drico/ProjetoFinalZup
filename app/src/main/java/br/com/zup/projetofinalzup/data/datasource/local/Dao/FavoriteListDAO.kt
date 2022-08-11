@@ -9,4 +9,6 @@ interface FavoriteListDAO {
     @Update(onConflict = OnConflictStrategy.IGNORE)
     fun updateCardapioFavorite(cardapio: CardapioResult)
 
+    fun getAllCardapioFavorited(): List<CardapioResult>
+
 }
