@@ -7,8 +7,8 @@ import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.DishItemBinding
 import com.squareup.picasso.Picasso
 
-class Adapter (private var charactersList: MutableList<MenuItem>
-) : RecyclerView.Adapter<Adapter.ViewHolder>(){
+class FavoritedListAdapter (private var charactersList: MutableList<MenuItem>
+) : RecyclerView.Adapter<FavoritedListAdapter.ViewHolder>(){
 
     class ViewHolder(val binding: DishItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun showInfo(item: MenuItem){

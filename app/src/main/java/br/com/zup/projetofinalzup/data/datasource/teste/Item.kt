@@ -1,4 +1,4 @@
-package br.com.zup.projetofinalzup.data.datasource.model
+package br.com.zup.projetofinalzup.data.datasource.teste
 
 import android.os.Parcelable
 import androidx.room.Entity
@@ -8,15 +8,16 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity(tableName = "menu")
-data class MenuItem (
+data class Item (
     @PrimaryKey(autoGenerate = false)
     @SerializedName("name")
-    val name:String,
+    val name:String = "Especiaria de Cacau",
     @SerializedName("description")
-    val description:String,
+    val description:String = "A caixinha mais pedida, com 4 chocolates crocantes com direito a muito recheio de creme de avelã.",
     @SerializedName("value")
-    val value:Double,
+    val value:Double = 28.55,
     @SerializedName("url")
-    val image:String
-   // var isFavorite:Boolean
+    val image:Int = 0,
+
+    val isFavorite:Boolean
 ) : Parcelable

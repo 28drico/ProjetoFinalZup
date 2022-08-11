@@ -6,36 +6,65 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import br.com.zup.projetofinalzup.R
-import br.com.zup.projetofinalzup.data.model.CardapioResult
-import br.com.zup.projetofinalzup.databinding.FragmentMenu2Binding
+import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.zup.projetofinalzup.databinding.FragmentMenuBinding
+import br.com.zup.projetofinalzup.ui.menu.view.adapter.MenuAdapter
 import br.com.zup.projetofinalzup.ui.menu.viewmodel.MenuViewModel
 import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 
 class MenuFragment : Fragment() {
 
-    private lateinit var binding: FragmentMenu2Binding
+    private lateinit var binding: FragmentMenuBinding
 
     private val viewModel: MenuViewModel by lazy {
-        ViewModelProvider(this)[MenuViewModel::class.java]
-    }
+        ViewModelProvider(this)[MenuViewModel::class.java] }
+
+    private val adapter: MenuAdapter by lazy {
+        MenuAdapter(arrayListOf()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_menu, container, false)
+        binding = FragmentMenuBinding.inflate(inflater, container, false)
+        return binding.root
     }
+    override fun onResume() {
+        super.onResume()
+        viewModel.getMenu()
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpRvMovieList()
+        initObserver()
+        viewModel.getMenu()
+    }
+    private fun initObserver() {
+        viewModel.state.observe(this.viewLifecycleOwner) {
 
-    private fun clickfavorito(){
-        viewModel.cardapioFavoritedState.observe(this.viewLifecycleOwner) {
+            when (it) {
+                is ViewState.Success -> {
+                    adapter.updateList(it.data.toMutableList())
+                }
+                is ViewState.Error -> {
+                    Toast.makeText(
+                        context,
+                        "${it.throwable.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                else -> {}
+            }
+        }
+
+        viewModel.state.observe(this.viewLifecycleOwner) {
             when (it) {
                 is ViewState.Success -> {
                     Toast.makeText(
                         context,
-                        "item cardapio foi favoritado com sucesso!",
+                        "Filme  foi favoritado com sucesso!",
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -49,18 +78,19 @@ class MenuFragment : Fragment() {
                 else -> {}
             }
         }
-    }
-    private fun statusfavorito(cardapio : CardapioResult){
 
-        binding.ivFavorite.setImageDrawable(
-            ContextCompat.getDrawable(
-                binding.root.context,
-                if(cardapio.isFavorite) {
-                    R.drawable.fav_icon
-                } else {
-                    R.drawable.notfav_icon
+        viewModel.loading.observe(this.viewLifecycleOwner) {
+            when (it) {
+                is ViewState.Loading -> {
+                    binding.pbLoading.isVisible = it.loading == true
                 }
-            )
-        )
+                else -> {}
+            }
+        }
+    }
+
+    private fun setUpRvMovieList() {
+        binding.rvMenu.adapter = adapter
+        binding.rvMenu.layoutManager = LinearLayoutManager(context)
     }
 }
