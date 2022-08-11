@@ -16,7 +16,7 @@
         android:layout_width="@dimen/size_Favorito_40dp"
         android:layout_height="@dimen/size_Favorito_40dp"
         android:layout_margin="@dimen/size_16dp"
-        android:contentDescription="@string/coracao_favorito"
+        android:contentDescription="@string/fav_ic"
         android:foregroundGravity="right"
         android:src="@drawable/notfav_icon"
         app:layout_constraintEnd_toEndOf="parent"/>
