@@ -57,7 +57,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun updateFavorito(cardapio: CardapioResult){
-        viewModel.disfavorPersonagens(cardapio)
+        viewModel.disfavorCardapio(cardapio)
     }
 
     private fun statusfavorito(cardapio: CardapioResult){
