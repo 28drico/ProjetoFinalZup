@@ -6,11 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-<<<<<<< HEAD
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-=======
->>>>>>> a474a72f805579931f424702967608ef61833242
 import br.com.zup.projetofinalzup.R
 import br.com.zup.projetofinalzup.data.model.CardapioResult
 import br.com.zup.projetofinalzup.databinding.FragmentMenu2Binding
@@ -33,7 +30,6 @@ class MenuFragment : Fragment() {
     }
 
     private fun clickfavorito(){
-<<<<<<< HEAD
         viewModel.cardapioFavoritedState.observe(this.viewLifecycleOwner) {
             when (it) {
                 is ViewState.Success -> {
@@ -53,9 +49,7 @@ class MenuFragment : Fragment() {
                 else -> {}
             }
         }
-
     }
-
     private fun statusfavorito(cardapio : CardapioResult){
 
         binding.ivFavorite.setImageDrawable(
@@ -69,16 +63,4 @@ class MenuFragment : Fragment() {
             )
         )
     }
-
-=======
-        //implementar o toast favorito e disfavorito
-    }
-
-    private fun statusfavorito(){
-        //implementar codigo status favorito e disfavorito
-    }
-
-
-
->>>>>>> a474a72f805579931f424702967608ef61833242
 }

@@ -44,7 +44,7 @@ class MenuViewModel(application: Application) : AndroidViewModel(application){
                 cardapioFavoritedState.value = response
             } catch (ex: Exception) {
                 cardapioFavoritedState.value =
-                    ViewState.Error(Throwable("Não foi possível atualizar o filme!"))
+                    ViewState.Error(Throwable("Não foi possível atualizar o cardapio!"))
             }
         }
     }
