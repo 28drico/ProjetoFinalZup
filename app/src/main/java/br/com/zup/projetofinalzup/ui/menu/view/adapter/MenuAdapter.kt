@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
-import br.com.zup.projetofinalzup.data.datasource.teste.Item
 import br.com.zup.projetofinalzup.databinding.DishItemBinding
 import com.squareup.picasso.Picasso
 
