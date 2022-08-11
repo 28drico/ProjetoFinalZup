@@ -38,7 +38,7 @@ class DetailFragment : Fragment() {
     private fun clickfavorito(cardapio: CardapioResult){
         binding.ivFavorite.setOnClickListener {
             cardapio.isFavorite = !cardapio.isFavorite
-//            updateFavorito(cardapio)
+            updateFavorito(cardapio)
 
 
             if (cardapio.isFavorite){
@@ -55,5 +55,10 @@ class DetailFragment : Fragment() {
             }
         }
     }
+
+    private fun updateFavorito(cardapio: CardapioResult){
+        viewModel.disfavorPersonagens(cardapio)
+    }
+
 
 }
