@@ -1,24 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.detail.view.DetailFragment">
+    android:layout_height="match_parent">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/app_name" />
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/ivFavorite"
-        android:layout_width="@dimen/size_Favorito_40dp"
-        android:layout_height="@dimen/size_Favorito_40dp"
-        android:layout_margin="@dimen/size_16dp"
-        android:contentDescription="@string/fav_ic"
-        android:foregroundGravity="right"
-        android:src="@drawable/notfav_icon"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <ImageView
+            android:id="@+id/ivItemDetail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_200"
+            android:src="@drawable/app_icon"
+            android:contentDescription="@string/letters_logo"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvItemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/item_title"
+            android:layout_marginTop="@dimen/size_20"
+            app:layout_constraintTop_toBottomOf="@id/ivItemDetail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivFavorite"
+            android:layout_width="@dimen/size_Favorito_40dp"
+            android:layout_height="@dimen/size_Favorito_40dp"
+            android:layout_margin="@dimen/size_16dp"
+            android:contentDescription="@string/fav_ic"
+            android:foregroundGravity="right"
+            android:src="@drawable/notfav_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivItemDetail"/>
+
+
+        <TextView
+            android:id="@+id/tvItemDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/item_desc"
+            android:layout_marginTop="@dimen/size_20"
+            app:layout_constraintTop_toBottomOf="@id/tvItemTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvItemPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/item_price"
+            android:layout_marginTop="@dimen/size_20"
+            app:layout_constraintTop_toBottomOf="@id/tvItemDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

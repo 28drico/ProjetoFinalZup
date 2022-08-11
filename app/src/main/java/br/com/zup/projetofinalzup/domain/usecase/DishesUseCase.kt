@@ -14,19 +14,17 @@ class DishesUseCase(application: Application) {
     suspend fun getMenuAPI(): ViewState<List<MenuItem>> {
         return try{
             val response = repository.getMenuAPI()
-            //pegar lista do database (salvando tudo no database, não só favoritos)
             repository.insertDatabaseList(response.menu)
             ViewState.Success(response.menu)
         }catch(e:Exception){
-            //pegar lista do database (salvando tudo no database, não só favoritos)
             getLocalList()
         }
     }
 
     suspend fun getFavoritedList():ViewState<List<MenuItem>>{
         return try{
-            val charactersFavorited = repository.getFavoritedList()
-            ViewState.Success(charactersFavorited)
+            val favoritedItems = repository.getFavoritedList()
+            ViewState.Success(favoritedItems)
         }catch(e:Exception){
             ViewState.Error(Exception(ERROR))
         }

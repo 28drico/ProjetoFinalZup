@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity(tableName = "menu")
-class MenuItem (
+data class MenuItem (
     @PrimaryKey(autoGenerate = false)
     @SerializedName("name")
     val name:String,
@@ -18,6 +18,5 @@ class MenuItem (
     val value:Double,
     @SerializedName("url")
     val image:String,
-
     var isFavorite:Boolean
 ) : Parcelable

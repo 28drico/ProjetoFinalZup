@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import br.com.zup.projetofinalzup.R
-import br.com.zup.projetofinalzup.data.model.CardapioResult
+import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.FragmentDetailBinding
 import br.com.zup.projetofinalzup.ui.DESFAVORITADO
 import br.com.zup.projetofinalzup.ui.FAVORITADO_SUCESSO
@@ -20,10 +20,7 @@ class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
 
-    private val viewModel: MenuViewModel by lazy {
-        ViewModelProvider(this)[MenuViewModel::class.java]
-    }
-
+    private val viewModel: MenuViewModel by lazy {ViewModelProvider(this)[MenuViewModel::class.java]}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,13 +29,11 @@ class DetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
-    private fun clickfavorito(cardapio: CardapioResult){
+    private fun favoritedItem(item: MenuItem){
         binding.ivFavorite.setOnClickListener {
-            cardapio.isFavorite = !cardapio.isFavorite
-            updateFavorito(cardapio)
+            item.isFavorite = !item.isFavorite
 
-
-            if (cardapio.isFavorite){
+            if (item.isFavorite){
                 Toast.makeText(
                     context,
                     FAVORITADO_SUCESSO,
@@ -53,15 +48,12 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun updateFavorito(cardapio: CardapioResult){
-        viewModel.disfavorCardapio(cardapio)
-    }
 
-    private fun statusfavorito(cardapio: CardapioResult){
+    private fun FavoritedStatus(item: MenuItem){
         binding.ivFavorite.setImageDrawable(
             ContextCompat.getDrawable(
                 binding.root.context,
-                if(cardapio.isFavorite) {
+                if(item.isFavorite) {
                     R.drawable.fav_icon
                 } else {
                     R.drawable.notfav_icon
@@ -69,5 +61,4 @@ class DetailFragment : Fragment() {
             )
         )
     }
-
 }
