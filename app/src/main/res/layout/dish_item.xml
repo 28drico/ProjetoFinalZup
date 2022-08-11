@@ -48,7 +48,7 @@
             android:textSize="@dimen/text_13"
             android:layout_marginTop="@dimen/size_20"
             android:layout_marginStart="@dimen/size_10"
-            android:layout_marginBottom="@dimen/size_10"
+            android:layout_marginBottom="@dimen/size_20"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvItemDescription"
             app:layout_constraintBottom_toBottomOf="parent"/>
