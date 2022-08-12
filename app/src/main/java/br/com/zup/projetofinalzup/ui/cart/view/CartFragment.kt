@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.zup.projetofinalzup.databinding.FragmentCartBinding
 import br.com.zup.projetofinalzup.domain.repository.Repository
 import br.com.zup.projetofinalzup.domain.repository.model.MenuRequest
+import br.com.zup.projetofinalzup.ui.cart.adapter.CartAdapter
 import br.com.zup.projetofinalzup.ui.cart.viewmodel.CartViewModel
 import br.com.zup.projetofinalzup.ui.menu.view.adapter.MenuAdapter
 import br.com.zup.projetofinalzup.ui.viewstate.Status
@@ -38,7 +39,7 @@ class CartFragment : Fragment() {
         viewModel.menu.observe(viewLifecycleOwner, Observer{
             when(it.status){
                 Status.SUCCESS -> {
-                    binding.rvCart.adapter = MenuAdapter(it.data!!)
+                    binding.rvCart.adapter = CartAdapter(it.data!!)
                     binding.rvCart.layoutManager = LinearLayoutManager(context)
                     binding.rvCart.isVisible = true
                 }
