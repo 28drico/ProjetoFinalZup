@@ -25,8 +25,7 @@ class MenuFragment : Fragment() {
     private lateinit var binding: FragmentMenuBinding
     private lateinit var viewModel: MenuViewModel
     private lateinit var factory:MenuViewModel.MenuViewModelFactory
-    private val adapter: MenuAdapter by lazy {MenuAdapter(arrayListOf(), this::goToDetail, this::favItem)}
-
+    private val adapter: MenuAdapter by lazy {MenuAdapter(arrayListOf(), this::goToDetail, this::favoriteItem)}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
