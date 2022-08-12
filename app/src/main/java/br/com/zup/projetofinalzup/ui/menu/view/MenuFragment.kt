@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.zup.projetofinalzup.R
+import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
 import br.com.zup.projetofinalzup.domain.repository.Repository
 import br.com.zup.projetofinalzup.domain.repository.model.MenuRequest
 import br.com.zup.projetofinalzup.databinding.FragmentMenuBinding
@@ -21,6 +25,8 @@ class MenuFragment : Fragment() {
     private lateinit var binding: FragmentMenuBinding
     private lateinit var viewModel: MenuViewModel
     private lateinit var factory:MenuViewModel.MenuViewModelFactory
+    private val adapter: MenuAdapter by lazy {MenuAdapter(arrayListOf(), this::goToDetail, this::favItem)}
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -38,7 +44,7 @@ class MenuFragment : Fragment() {
         viewModel.menu.observe(viewLifecycleOwner,Observer{
             when(it.status){
                 Status.SUCCESS -> {
-                    binding.rvMenu.adapter = MenuAdapter(it.data!!)
+                    binding.rvMenu.adapter = adapter
                     binding.rvMenu.layoutManager = LinearLayoutManager(context)
                     binding.rvMenu.isVisible = true
                     binding.pbLoading.isVisible = false
@@ -53,5 +59,32 @@ class MenuFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun clickfavorito(menu: MenuItem){
+        binding.rvMenu.setOnClickListener {
+            menu.isFavorite = menu.isFavorite
+            favoriteItem(menu)
+            if (menu.isFavorite == true){
+                Toast.makeText(
+                    context,
+                    "FAVORITADO_SUCESSO",
+                    Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(
+                    context,
+                    "DESFAVORITADO",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+    }
+
+    fun goToDetail(item:MenuItem){
+        val bundle = bundleOf("ITEM_KEY" to item)
+        NavHostFragment.findNavController(this).navigate(R.id.action_menuFragment_to_detailFragment,bundle)
+    }
+    fun favoriteItem(item:MenuItem){
+        viewModel.insertFavoriteItem(item)
     }
 }
