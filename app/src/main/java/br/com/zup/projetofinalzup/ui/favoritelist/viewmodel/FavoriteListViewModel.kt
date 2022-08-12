@@ -27,6 +27,7 @@ class FavoriteListViewModel(private val repository:Repository):ViewModel() {
                 _response.value = ViewState.error(null,e.message)
             }
         }
+
     }
 
     class FavoriteListViewModelFactory(val repository: Repository): ViewModelProvider.Factory{
