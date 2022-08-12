@@ -7,7 +7,7 @@ import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.DishItemBinding
 import com.squareup.picasso.Picasso
 
-class CartAdapter (private var charactersList: List<MenuItem>
+class CartAdapter (private var cartList: List<MenuItem>
 ) : RecyclerView.Adapter<CartAdapter.ViewHolder>(){
 
     class ViewHolder(val binding: DishItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -25,14 +25,14 @@ class CartAdapter (private var charactersList: List<MenuItem>
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val character = charactersList[position]
+        val character = cartList[position]
         holder.showInfo(character)
     }
 
-    override fun getItemCount() = charactersList.size
+    override fun getItemCount() = cartList.size
 
     fun updateList(newList:MutableList<MenuItem>){
-        charactersList = newList
+        cartList = newList
         notifyDataSetChanged()
     }
 }
