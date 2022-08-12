@@ -5,7 +5,7 @@ import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
 import br.com.zup.projetofinalzup.domain.repository.Repository
 import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 
-class DishUseCase{
+class DishesUseCase{
     private val repository = Repository
     private val dao = AppApplication.getdatabase().favoriteListDAO()
 
