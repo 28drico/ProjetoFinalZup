@@ -53,6 +53,7 @@ dependencies {
 
     //network connection
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
     implementation "com.squareup.okhttp3:logging-interceptor:4.2.1"
 
     //lifecycle
@@ -72,4 +73,8 @@ dependencies {
 
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //moshi
+    def moshi_version = "1.11.0"
+    implementation"com.squareup.moshi:moshi-kotlin:$moshi_version"
 }

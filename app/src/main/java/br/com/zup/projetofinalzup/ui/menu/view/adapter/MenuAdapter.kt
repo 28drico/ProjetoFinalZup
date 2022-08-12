@@ -7,7 +7,7 @@ import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.DishItemBinding
 import com.squareup.picasso.Picasso
 
-class MenuAdapter (private var menu: MutableList<MenuItem>
+class MenuAdapter (private var menu: List<MenuItem>
 ) :
 RecyclerView.Adapter<MenuAdapter.ViewHolder>(){
 
@@ -16,7 +16,7 @@ RecyclerView.Adapter<MenuAdapter.ViewHolder>(){
             binding.tvItemTitle.text = item.name
             binding.tvItemDescription.text = item.description
             binding.tvItemValue.text = item.value.toString()
-            Picasso.get().load(item.image).into(binding.ivItemImage)
+            Picasso.get().load(item.urlImageProduct).into(binding.ivItemImage)
         }
     }
 

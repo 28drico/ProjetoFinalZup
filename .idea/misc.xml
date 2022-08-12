@@ -8,10 +8,11 @@
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/drawable/ic_baseline_local_dining_24.xml" value="0.159" />
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.159" />
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/drawable/ic_launcher_background.xml" value="0.159" />
+        <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/drawable/ic_restaurant_24.xml" value="0.117" />
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/layout/activity_home.xml" value="0.12849162011173185" />
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/layout/activity_splash.xml" value="0.1796875" />
-        <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/layout/dish_item.xml" value="0.22" />
+        <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/layout/dish_item.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/layout/fragment_cart.xml" value="0.1796875" />
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/layout/fragment_cartt.xml" value="0.1796875" />
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/layout/fragment_detail.xml" value="0.1796875" />
@@ -20,6 +21,7 @@
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/layout/fragment_favorite_list.xml" value="0.1796875" />
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/layout/fragment_menu.xml" value="0.1796875" />
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/layout/fragment_menu2.xml" value="0.1796875" />
+        <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/menu/bottom_nav.xml" value="0.1796875" />
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1015" />
         <entry key="..\:/Users/natalia.oliveira/Desktop/ProjetoFinalZup/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1015" />
       </map>

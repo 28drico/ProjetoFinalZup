@@ -20,17 +20,21 @@
         android:label="activity_splash"
         tools:layout="@layout/activity_splash" />
     <fragment
-        android:id="@+id/favoriteFragment"
-        android:name="br.com.zup.projetofinalzup.ui.favoritelist.view.FavoriteFragment"
-        android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" >
-        <action
-            android:id="@+id/action_favoriteFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/detailFragment"
         android:name="br.com.zup.projetofinalzup.ui.detail.view.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="br.com.zup.projetofinalzup.ui.menu.view.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 </navigation>

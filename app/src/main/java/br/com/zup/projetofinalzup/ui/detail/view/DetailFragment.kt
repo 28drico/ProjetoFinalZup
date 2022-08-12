@@ -1,5 +1,5 @@
 package br.com.zup.projetofinalzup.ui.detail.view
-
+/**
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -61,4 +61,4 @@ class DetailFragment : Fragment() {
             )
         )
     }
-}
+}**/
