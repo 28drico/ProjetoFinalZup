@@ -26,5 +26,8 @@
     <string name="qrcode_ic">Ícone de um qrcode com uma lupa</string>
     <string name="fav_ic">Ícone de coração na cor cinza</string>
     <string name="disfav_ic">ícone de coração sem preenchimento com contorno preto</string>
+    <string name="menu_icon_title">Cardápio</string>
+    <string name="fav_icon_title">Favoritos</string>
+    <string name="cart_icon_title">Sacola</string>
 
 </resources>
