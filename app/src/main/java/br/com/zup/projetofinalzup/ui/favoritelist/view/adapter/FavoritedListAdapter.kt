@@ -1,4 +1,4 @@
-package br.com.zup.projetofinalzup.ui.favoritelist.view.adapter
+/**package br.com.zup.projetofinalzup.ui.favoritelist.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -35,4 +35,4 @@ class FavoritedListAdapter (private var charactersList: MutableList<MenuItem>
         charactersList = newList
         notifyDataSetChanged()
     }
-}
+}**/

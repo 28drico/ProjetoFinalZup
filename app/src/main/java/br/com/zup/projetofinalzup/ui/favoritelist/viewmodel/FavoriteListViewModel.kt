@@ -1,4 +1,4 @@
-package br.com.zup.projetofinalzup.ui.favoritelist.viewmodel
+/**package br.com.zup.projetofinalzup.ui.favoritelist.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -42,4 +42,4 @@ class FavoriteListViewModel(application: Application): AndroidViewModel(applicat
             }
         }
     }
-}
+}**/

@@ -1,5 +1,5 @@
 package br.com.zup.projetofinalzup.domain.usecase
-
+/**
 import android.app.Application
 import br.com.zup.projetofinalzup.data.datasource.local.FavoriteListDatabase
 import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
@@ -47,4 +47,4 @@ class DishesUseCase(application: Application) {
             ViewState.Error(Exception(ERROR))
         }
     }
-}
+}**/
