@@ -18,7 +18,7 @@ class AppApplication: Application() {
 
     companion object {
         private lateinit var database: FavoriteListDatabase
-        fun getDB(): FavoriteListDatabase {
+        fun getdatabase(): FavoriteListDatabase {
             return database
         }
     }
