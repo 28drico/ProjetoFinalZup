@@ -1,74 +1,57 @@
 package br.com.zup.projetofinalzup.ui.favoritelist.view
 
-
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.zup.projetofinalzup.domain.repository.Repository
+import br.com.zup.projetofinalzup.domain.repository.model.MenuRequest
+import br.com.zup.projetofinalzup.databinding.FragmentFavoriteBinding
+import br.com.zup.projetofinalzup.ui.favoritelist.view.adapter.FavoritedListAdapter
+import br.com.zup.projetofinalzup.ui.favoritelist.viewmodel.FavoriteListViewModel
+import br.com.zup.projetofinalzup.ui.viewstate.Status
 
-class FavoriteFragment : Fragment() {/**
+class FavoriteFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteBinding
-
-    private val viewModel: FavoriteListViewModel by lazy {
-        ViewModelProvider(this)[FavoriteListViewModel::class.java]}
-
-    private val adapter: FavoritedListAdapter by lazy { FavoritedListAdapter(arrayListOf()) }
+    private lateinit var viewModel: FavoriteListViewModel
+    private lateinit var factory: FavoriteListViewModel.FavoriteListViewModelFactory
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFavoriteBinding.inflate(inflater,container, false)
+        binding = FragmentFavoriteBinding.inflate(inflater, container, false)
+        factory = FavoriteListViewModel.FavoriteListViewModelFactory(Repository)
+        viewModel = ViewModelProvider(this, factory).get(FavoriteListViewModel::class.java)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showRecycler()
-        observers()
-        (activity as HomeActivity).supportActionBar?.hide()
-    }
-    override fun onResume() {
-        super.onResume()
-        viewModel.getFavoritedList()
-    }
+        viewModel.getFavoritedList(MenuRequest("31037721000108"))
 
-    private fun observers() {
-        viewModel.favoriteState.observe(this.viewLifecycleOwner) {
-            when (it) {
-                is ViewState.Success -> {
-                    adapter.updateList(it.data.toMutableList())}
-                is ViewState.Error -> {
-                    Toast.makeText(context, ERROR, Toast.LENGTH_LONG).show()}
-                else -> {}
-            }
-        }
-        viewModel.disfavorState.observe(this.viewLifecycleOwner) {
-            when (it) {
-                is ViewState.Success -> {
-                    Toast.makeText(
-                        context,
-                        "item cardapio foi favoritado com sucesso!",
-                        Toast.LENGTH_LONG
-                    ).show()
+        viewModel.response.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    binding.rvFavoritedList.adapter = FavoritedListAdapter(it.data!!)
+                    binding.rvFavoritedList.layoutManager = LinearLayoutManager(context)
+                    binding.rvFavoritedList.isVisible = true
+                    binding.pbLoading.isVisible = false
                 }
-                is ViewState.Error -> {
-                    Toast.makeText(
-                        context,
-                        "${it.throwable.message}",
-                        Toast.LENGTH_LONG
-                    ).show()
+                Status.LOADING -> {
+                    binding.pbLoading.isVisible = true
+                    binding.rvFavoritedList.isVisible = false
                 }
-                else -> {}
+                Status.ERROR -> {
+                    Toast.makeText(context, "${it.message}", Toast.LENGTH_LONG).show()
+                    binding.pbLoading.isVisible = false
+                }
             }
-        }
+        })
     }
-    private fun showRecycler(){
-        binding.rvMenu.adapter = adapter
-        binding.rvMenu.layoutManager = GridLayoutManager(context,2)
-    }
-    private fun goToDetail(menu: MenuItem) {
-        val bundle = bundleOf("BLA" to menu)
-        NavHostFragment.findNavController(this).navigate(R.id.action_favoriteFragment_to_detailFragment, bundle)
-    }
-
-    private fun disfavorItem(item: MenuItem) {
-        viewModel.disfavorItem(item)
-    }**/
 }

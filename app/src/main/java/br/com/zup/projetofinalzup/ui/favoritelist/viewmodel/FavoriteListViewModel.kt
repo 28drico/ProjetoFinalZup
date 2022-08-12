@@ -1,45 +1,40 @@
-/**package br.com.zup.projetofinalzup.ui.favoritelist.viewmodel
+package br.com.zup.projetofinalzup.ui.favoritelist.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
-import br.com.zup.projetofinalzup.domain.singleliveevent.SingleLiveEvent
-import br.com.zup.projetofinalzup.domain.usecase.DishesUseCase
-import br.com.zup.projetofinalzup.ui.ERROR
+import br.com.zup.projetofinalzup.domain.repository.Repository
+import br.com.zup.projetofinalzup.domain.repository.model.MenuRequest
 import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FavoriteListViewModel(application: Application): AndroidViewModel(application) {
-    private val useCase = DishesUseCase(application)
-    val favoriteState = SingleLiveEvent<ViewState<List<MenuItem>>>()
-    val disfavorState = SingleLiveEvent<ViewState<MenuItem>>()
+class FavoriteListViewModel(private val repository:Repository):ViewModel() {
+    private val _response = MutableLiveData<ViewState<List<MenuItem>>>()
+    val response: LiveData<ViewState<List<MenuItem>>> get() = _response
 
-    fun getFavoritedList(){
+    fun getFavoritedList(menu: MenuRequest) {
         viewModelScope.launch {
-            try{
-                val response = withContext(Dispatchers.IO){
-                    useCase.getFavoritedList()
-                }
-                favoriteState.value = response
-            }catch(e:Exception){
-                favoriteState.value = ViewState.Error(Throwable(ERROR))
-            }
-        }
-    }
-    fun disfavorItem(item: MenuItem) {
-        viewModelScope.launch {
+            _response.value = ViewState.loading(null)
             try {
-                val response = withContext(Dispatchers.IO) {
-                    useCase.updateFavoritedList(item)
+                val withContext = withContext(Dispatchers.Default) {
+                    repository.getAPI().getMenu(menu)
                 }
-                disfavorState.value = response
-            } catch (ex: Exception) {
-                disfavorState.value =
-                    ViewState.Error(Throwable("Não foi desfavoritar o filme!"))
+                withContext?.let {
+                    _response.value = ViewState.success(it)
+                }
+            } catch (e: Exception) {
+                _response.value = ViewState.error(null,e.message)
             }
         }
     }
-}**/
+
+    class FavoriteListViewModelFactory(val repository: Repository): ViewModelProvider.Factory{
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if(modelClass.isAssignableFrom(FavoriteListViewModel::class.java)){
+                return FavoriteListViewModel(repository) as T
+            }
+            throw IllegalArgumentException("unknown viewmodel class")
+        }
+    }
+}

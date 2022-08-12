@@ -1,4 +1,4 @@
-package br.com.zup.projetofinalzup.ui.favoritelist.view.adapter
+package br.com.zup.projetofinalzup.ui.cart.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,8 +7,8 @@ import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.DishItemBinding
 import com.squareup.picasso.Picasso
 
-class FavoritedListAdapter (private var charactersList: List<MenuItem>
-) : RecyclerView.Adapter<FavoritedListAdapter.ViewHolder>(){
+class CartAdapter (private var charactersList: List<MenuItem>
+) : RecyclerView.Adapter<CartAdapter.ViewHolder>(){
 
     class ViewHolder(val binding: DishItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun showInfo(item: MenuItem){

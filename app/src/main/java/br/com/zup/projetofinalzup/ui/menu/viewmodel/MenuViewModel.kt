@@ -2,8 +2,8 @@ package br.com.zup.projetofinalzup.ui.menu.viewmodel
 
 import androidx.lifecycle.*
 import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
-import br.com.zup.projetofinalzup.data.datasource.repository.Repository
-import br.com.zup.projetofinalzup.data.datasource.repository.model.MenuRequest
+import br.com.zup.projetofinalzup.domain.repository.Repository
+import br.com.zup.projetofinalzup.domain.repository.model.MenuRequest
 import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
