@@ -7,7 +7,7 @@ import br.com.zup.projetofinalzup.data.datasource.local.database.FavoriteListDat
 class AppApplication: Application() {
     override fun onCreate() {
         super.onCreate()
-        db = Room.databaseBuilder(
+        database = Room.databaseBuilder(
             applicationContext,
             FavoriteListDatabase::class.java, "database-character"
         )
@@ -17,9 +17,9 @@ class AppApplication: Application() {
     }
 
     companion object {
-        private lateinit var db: FavoriteListDatabase
+        private lateinit var database: FavoriteListDatabase
         fun getDB(): FavoriteListDatabase {
-            return db
+            return database
         }
     }
 }
