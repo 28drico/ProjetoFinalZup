@@ -9,18 +9,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.zup.projetofinalzup.data.datasource.repository.Repository
-import br.com.zup.projetofinalzup.data.datasource.repository.model.MenuRequest
+import br.com.zup.projetofinalzup.domain.repository.Repository
+import br.com.zup.projetofinalzup.domain.repository.model.MenuRequest
 import br.com.zup.projetofinalzup.databinding.FragmentMenuBinding
 import br.com.zup.projetofinalzup.ui.menu.view.adapter.MenuAdapter
 import br.com.zup.projetofinalzup.ui.menu.viewmodel.MenuViewModel
 import br.com.zup.projetofinalzup.ui.viewstate.Status
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 
 class MenuFragment : Fragment() {
     private lateinit var binding: FragmentMenuBinding
@@ -28,9 +23,7 @@ class MenuFragment : Fragment() {
     private lateinit var factory:MenuViewModel.MenuViewModelFactory
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentMenuBinding.inflate(layoutInflater, container, false)
         factory = MenuViewModel.MenuViewModelFactory(Repository)

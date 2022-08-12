@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "menu")
+@Entity(tableName = "item")
 data class MenuItem (
 
     @PrimaryKey(autoGenerate = false)

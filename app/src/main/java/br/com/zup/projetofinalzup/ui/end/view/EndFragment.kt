@@ -23,7 +23,6 @@ class EndFragment : Fragment() {
         binding.bvNewOrder.setOnClickListener{
             NavHostFragment.findNavController(this).navigate(R.id.action_endFragment_to_splashActivity)
         }
-
         return binding.root
     }
 }
