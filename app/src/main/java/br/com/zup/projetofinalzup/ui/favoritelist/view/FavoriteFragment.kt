@@ -38,14 +38,14 @@ class FavoriteFragment : Fragment() {
         viewModel.response.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
-                    binding.rvFavoritedList.adapter = FavoritedListAdapter(it.data!!)
-                    binding.rvFavoritedList.layoutManager = LinearLayoutManager(context)
-                    binding.rvFavoritedList.isVisible = true
+                    binding.rvFavorite.adapter = FavoritedListAdapter(it.data!!)
+                    binding.rvFavorite.layoutManager = LinearLayoutManager(context)
+                    binding.rvFavorite.isVisible = true
                     binding.pbLoading.isVisible = false
                 }
                 Status.LOADING -> {
                     binding.pbLoading.isVisible = true
-                    binding.rvFavoritedList.isVisible = false
+                    binding.rvFavorite.isVisible = false
                 }
                 Status.ERROR -> {
                     Toast.makeText(context, "${it.message}", Toast.LENGTH_LONG).show()
