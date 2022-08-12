@@ -33,15 +33,6 @@ class MenuViewModel(private val repository:Repository):ViewModel(){
         }
     }
 
-    class MenuViewModelFactory(val repository:Repository):ViewModelProvider.Factory{
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if(modelClass.isAssignableFrom(MenuViewModel::class.java)){
-                return MenuViewModel(repository) as T
-            }
-            throw IllegalArgumentException("unknown viewmodel class")
-        }
-    }
-
     fun insertFavoriteItem(item:MenuItem){
         viewModelScope.launch {
             _menu.value = ViewState.loading(null)
@@ -53,6 +44,14 @@ class MenuViewModel(private val repository:Repository):ViewModel(){
             }catch (e:Exception){
                 favState.value = ViewState.error(null,e.message)
             }
+        }
+    }
+    class MenuViewModelFactory(val repository:Repository):ViewModelProvider.Factory{
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if(modelClass.isAssignableFrom(MenuViewModel::class.java)){
+                return MenuViewModel(repository) as T
+            }
+            throw IllegalArgumentException("unknown viewmodel class")
         }
     }
 }
