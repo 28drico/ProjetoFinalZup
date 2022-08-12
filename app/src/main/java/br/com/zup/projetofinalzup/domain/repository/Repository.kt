@@ -1,4 +1,4 @@
-package br.com.zup.projetofinalzup.data.datasource.repository
+package br.com.zup.projetofinalzup.domain.repository
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
