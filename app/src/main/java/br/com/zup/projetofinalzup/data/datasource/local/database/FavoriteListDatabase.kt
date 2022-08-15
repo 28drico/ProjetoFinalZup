@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import br.com.zup.projetofinalzup.data.datasource.local.dao.FavoriteListDAO
 import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
 
-@Database(entities = [MenuItem::class],version = 1)
+@Database(entities = [MenuItem::class],version = 2)
 abstract class FavoriteListDatabase : RoomDatabase() {
 
     abstract fun favoriteListDAO(): FavoriteListDAO
