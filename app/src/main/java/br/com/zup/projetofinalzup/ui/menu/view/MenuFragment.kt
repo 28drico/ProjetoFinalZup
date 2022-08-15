@@ -10,14 +10,12 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.zup.projetofinalzup.R
-import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
-import br.com.zup.projetofinalzup.domain.repository.Repository
-import br.com.zup.projetofinalzup.domain.repository.model.MenuRequest
+import br.com.zup.projetofinalzup.data.model.MenuItem
+import br.com.zup.projetofinalzup.domain.repository.Repositoryapi
+import br.com.zup.projetofinalzup.data.datasource.remote.model.MenuRequest
 import br.com.zup.projetofinalzup.databinding.FragmentMenuBinding
 import br.com.zup.projetofinalzup.ui.menu.view.adapter.MenuAdapter
 import br.com.zup.projetofinalzup.ui.menu.viewmodel.MenuViewModel
@@ -36,7 +34,7 @@ class MenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMenuBinding.inflate(layoutInflater, container, false)
-        factory = MenuViewModel.MenuViewModelFactory(Repository)
+        factory = MenuViewModel.MenuViewModelFactory(Repositoryapi)
         viewModel = ViewModelProvider(this,factory).get(MenuViewModel::class.java)
         return binding.root
     }
@@ -66,8 +64,13 @@ class MenuFragment : Fragment() {
         })
         viewModel.favState.observe(this.viewLifecycleOwner){
             when(it){
-                ViewState.success(it) -> {Toast.makeText(context,"${it.data?.name} ${getString(R.string.item_fav)}",Toast.LENGTH_SHORT).show()}
-                ViewState.error(null, it.message) -> {Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()}
+                ViewState.success(it?.data) -> {
+                    Toast.makeText(context,"${it.data?.name} ${getString(R.string.item_fav)}",Toast.LENGTH_SHORT).show()
+                    adapter.notifyDataSetChanged()
+                }
+                ViewState.error(null, it?.message) -> {
+                    Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
