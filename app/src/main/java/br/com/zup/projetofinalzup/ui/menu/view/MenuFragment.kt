@@ -22,6 +22,7 @@ import br.com.zup.projetofinalzup.databinding.FragmentMenuBinding
 import br.com.zup.projetofinalzup.ui.menu.view.adapter.MenuAdapter
 import br.com.zup.projetofinalzup.ui.menu.viewmodel.MenuViewModel
 import br.com.zup.projetofinalzup.ui.viewstate.Status
+import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 
 class MenuFragment : Fragment() {
     private lateinit var binding: FragmentMenuBinding
@@ -63,6 +64,12 @@ class MenuFragment : Fragment() {
                 }
             }
         })
+        viewModel.favState.observe(this.viewLifecycleOwner){
+            when(it){
+                ViewState.success(it) -> {Toast.makeText(context,"${it.data?.name} ${getString(R.string.item_fav)}",Toast.LENGTH_SHORT).show()}
+                ViewState.error(null, it.message) -> {Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()}
+            }
+        }
     }
     fun goToDetail(item: MenuItem){
         val bundle = bundleOf("ITEM_KEY" to item)
