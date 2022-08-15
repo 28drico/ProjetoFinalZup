@@ -3,6 +3,7 @@ package br.com.zup.projetofinalzup.ui.menu.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.TypedArrayUtils.getString
 import androidx.recyclerview.widget.RecyclerView
 import br.com.zup.projetofinalzup.R
 import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
@@ -14,13 +15,14 @@ class MenuAdapter (
     private val clickDetail: (item: MenuItem) -> Unit,
     private val clickFav: (item: MenuItem) -> Unit
 ) :
-RecyclerView.Adapter<MenuAdapter.ViewHolder>(){
+    RecyclerView.Adapter<MenuAdapter.ViewHolder>(){
 
     class ViewHolder(val binding: DishItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun showInfo(item: MenuItem){
             binding.tvItemTitle.text = item.name
             binding.tvItemDescription.text = item.description
-            binding.tvItemValue.text = item.value.toString()
+            val value = "R$ ${item.value}"
+            binding.tvItemValue.text = value
             Picasso.get().load(item.urlImageProduct).into(binding.ivItemImage)
 
             binding.ivItemFavorite.setImageDrawable(
@@ -43,11 +45,12 @@ RecyclerView.Adapter<MenuAdapter.ViewHolder>(){
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val items = menu[position]
         holder.showInfo(items)
+
         holder.binding.ivItemFavorite.setOnClickListener{
             items.isFavorite = items.isFavorite!!
             clickFav(items)
         }
-        holder.binding.ivItemImage.setOnClickListener{
+        holder.binding.cvItem.setOnClickListener{
             clickDetail(items)
         }
     }
@@ -58,6 +61,4 @@ RecyclerView.Adapter<MenuAdapter.ViewHolder>(){
         menu = newList
         notifyDataSetChanged()
     }
-
-
 }
