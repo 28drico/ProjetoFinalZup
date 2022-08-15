@@ -1,19 +1,18 @@
 package br.com.zup.projetofinalzup.ui.menu.viewmodel
 
 import androidx.lifecycle.*
-import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
-import br.com.zup.projetofinalzup.domain.repository.Repository
-import br.com.zup.projetofinalzup.domain.repository.model.MenuRequest
-import br.com.zup.projetofinalzup.domain.singleliveevent.SingleLiveEvent
+import br.com.zup.projetofinalzup.data.model.MenuItem
+import br.com.zup.projetofinalzup.domain.repository.Repositoryapi
+import br.com.zup.projetofinalzup.data.datasource.remote.model.MenuRequest
 import br.com.zup.projetofinalzup.domain.usecase.DishesUseCase
 import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MenuViewModel(private val repository:Repository):ViewModel(){
+class MenuViewModel(private val repository:Repositoryapi):ViewModel(){
     private val useCase = DishesUseCase()
-    val favState = SingleLiveEvent<ViewState<MenuItem>>()
+    val favState = MutableLiveData<ViewState<MenuItem>?>()
     private val _menu = MutableLiveData<ViewState<List<MenuItem>>>()
     val menu: LiveData<ViewState<List<MenuItem>>> get() = _menu
 
@@ -46,7 +45,7 @@ class MenuViewModel(private val repository:Repository):ViewModel(){
         }
     }
 
-    class MenuViewModelFactory(val repository:Repository):ViewModelProvider.Factory{
+    class MenuViewModelFactory(val repository:Repositoryapi):ViewModelProvider.Factory{
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if(modelClass.isAssignableFrom(MenuViewModel::class.java)){
                 return MenuViewModel(repository) as T
