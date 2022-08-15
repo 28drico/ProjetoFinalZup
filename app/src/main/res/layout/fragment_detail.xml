@@ -22,19 +22,26 @@
 
         <TextView
             android:id="@+id/tvItemTitle"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/item_title"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/text_18"
             android:layout_marginTop="@dimen/size_20"
-            app:layout_constraintTop_toBottomOf="@id/ivItemDetail"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginEnd="@dimen/size_10"
+            app:layout_constraintEnd_toStartOf="@id/ivFavorite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivItemDetail"/>
 
         <ImageView
             android:id="@+id/ivFavorite"
-            android:layout_width="@dimen/size_40"
-            android:layout_height="@dimen/size_40"
-            android:layout_margin="@dimen/size_16dp"
+            android:layout_width="@dimen/size_30"
+            android:layout_height="@dimen/size_30"
+            android:layout_marginTop="@dimen/size_20"
+            android:layout_marginEnd="@dimen/size_30"
+            android:layout_marginBottom="@dimen/size_20"
+            android:layout_marginStart="@dimen/size_20"
             android:contentDescription="@string/fav_ic"
             android:foregroundGravity="right"
             android:src="@drawable/notfav_icon"
@@ -44,10 +51,15 @@
 
         <TextView
             android:id="@+id/tvItemDescription"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/item_desc"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/text_13"
+            android:maxLines="5"
             android:layout_marginTop="@dimen/size_20"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginEnd="@dimen/size_70"
             app:layout_constraintTop_toBottomOf="@id/tvItemTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -59,9 +71,39 @@
             android:layout_height="wrap_content"
             android:text="@string/item_price"
             android:layout_marginTop="@dimen/size_20"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginEnd="@dimen/size_70"
             app:layout_constraintTop_toBottomOf="@id/tvItemDescription"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/bvQuantity"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/light_gray"
+            android:text="@string/total"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/text_10"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginEnd="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_20"
+            app:layout_constraintTop_toBottomOf="@id/tvItemPrice"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Button
+            android:id="@+id/bvCartAdd"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/dark_gray"
+            android:text="@string/add_cart"
+            android:textColor="@color/light_gray"
+            android:textSize="@dimen/text_10"
+            android:layout_marginStart="@dimen/size_20"
+            android:layout_marginEnd="@dimen/size_20"
+            android:layout_marginTop="@dimen/size_20"
+            app:layout_constraintTop_toBottomOf="@id/tvItemPrice"
+            app:layout_constraintStart_toEndOf="@id/bvQuantity"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
