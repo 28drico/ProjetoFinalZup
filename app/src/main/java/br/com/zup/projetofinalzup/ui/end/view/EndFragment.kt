@@ -19,10 +19,6 @@ class EndFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentEndBinding.inflate(inflater, container,false)
-
-        binding.bvNewOrder.setOnClickListener{
-            NavHostFragment.findNavController(this).navigate(R.id.action_endFragment_to_splashActivity)
-        }
         return binding.root
     }
 }

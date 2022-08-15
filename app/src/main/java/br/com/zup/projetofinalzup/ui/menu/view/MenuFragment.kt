@@ -10,7 +10,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.zup.projetofinalzup.R
 import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
@@ -65,7 +67,9 @@ class MenuFragment : Fragment() {
     fun goToDetail(item: MenuItem){
         val bundle = bundleOf("ITEM_KEY" to item)
         NavHostFragment.findNavController(this).navigate(R.id.action_menuFragment_to_detailFragment,bundle)
+
     }
+
     fun favoriteItem(item:MenuItem){
         viewModel.insertFavoriteItem(item)
     }
