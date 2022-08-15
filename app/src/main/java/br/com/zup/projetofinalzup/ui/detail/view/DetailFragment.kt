@@ -20,13 +20,13 @@ class DetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDetailBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        dataRecovery()
+        dataRecovery()
     }
     private fun dataRecovery(){
         val item = arguments?.getParcelable<MenuItem>("ITEM_KEY")
@@ -40,7 +40,7 @@ class DetailFragment : Fragment() {
             binding.ivFavorite.setImageDrawable(
                 ContextCompat.getDrawable(
                     binding.root.context,
-                    if(it.isFavorite!!)
+                    if(it.isFavorite == true)
                         R.drawable.fav_icon
                 else
                     R.drawable.disfav_icon
