@@ -9,10 +9,12 @@
     <string name="add_cart">adicionar na sacola</string>
     <string name="item_add">O item foi adicionado na sacola!</string>
     <string name="item_remove">O item foi removido da sacola!</string>
+    <string name="empty_cart">Não há items na sacola!</string>
     <string name="total">Total R$&#x20;</string>
     <string name="close_order">fechar pedido</string>
     <string name="closed_order">Pedido Fechado!</string>
     <string name="new_order">&#x20;&#x20;novo pedido&#x20;&#x20;</string>
+    <string name="item_qtd">&#x20;x</string>
 
     <!-- Descriptions -->
 
