@@ -35,17 +35,17 @@ class MenuViewModel(private val repository:Repository):ViewModel(){
 
     fun insertFavoriteItem(item:MenuItem){
         viewModelScope.launch {
-            _menu.value = ViewState.loading(null)
             try{
                 val withContext = withContext(Dispatchers.Default){
                     useCase.favoriteItem(item)
                 }
                 favState.value = withContext
-            }catch (e:Exception){
+            }catch(e:Exception){
                 favState.value = ViewState.error(null,e.message)
             }
         }
     }
+
     class MenuViewModelFactory(val repository:Repository):ViewModelProvider.Factory{
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if(modelClass.isAssignableFrom(MenuViewModel::class.java)){

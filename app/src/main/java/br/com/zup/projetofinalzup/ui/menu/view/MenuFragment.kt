@@ -28,7 +28,9 @@ class MenuFragment : Fragment() {
     private val adapter: MenuAdapter by lazy {MenuAdapter(arrayListOf(), this::goToDetail, this::favoriteItem)}
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         binding = FragmentMenuBinding.inflate(layoutInflater, container, false)
         factory = MenuViewModel.MenuViewModelFactory(Repository)
@@ -45,6 +47,7 @@ class MenuFragment : Fragment() {
                 Status.SUCCESS -> {
                     binding.rvMenu.adapter = adapter
                     binding.rvMenu.layoutManager = LinearLayoutManager(context)
+                    adapter.updateList(it.data as MutableList<MenuItem>)
                     binding.rvMenu.isVisible = true
                     binding.pbLoading.isVisible = false
                 }
@@ -59,27 +62,7 @@ class MenuFragment : Fragment() {
             }
         })
     }
-
-    private fun clickfavorito(menu: MenuItem){
-        binding.rvMenu.setOnClickListener {
-            menu.isFavorite = menu.isFavorite
-            favoriteItem(menu)
-            if (menu.isFavorite == true){
-                Toast.makeText(
-                    context,
-                    "FAVORITADO_SUCESSO",
-                    Toast.LENGTH_LONG).show()
-            }else{
-                Toast.makeText(
-                    context,
-                    "DESFAVORITADO",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        }
-    }
-
-    fun goToDetail(item:MenuItem){
+    fun goToDetail(item: MenuItem){
         val bundle = bundleOf("ITEM_KEY" to item)
         NavHostFragment.findNavController(this).navigate(R.id.action_menuFragment_to_detailFragment,bundle)
     }
