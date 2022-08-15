@@ -1,18 +1,14 @@
 package br.com.zup.projetofinalzup.ui.home.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import br.com.zup.projetofinalzup.R
 import br.com.zup.projetofinalzup.databinding.ActivityHomeBinding
-import br.com.zup.projetofinalzup.ui.cart.view.CartFragment
-import br.com.zup.projetofinalzup.ui.favoritelist.view.FavoriteFragment
-import br.com.zup.projetofinalzup.ui.menu.view.MenuFragment
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding : ActivityHomeBinding
