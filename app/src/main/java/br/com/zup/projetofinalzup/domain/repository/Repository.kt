@@ -1,18 +1,20 @@
 package br.com.zup.projetofinalzup.domain.repository
 
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import br.com.zup.projetofinalzup.data.datasource.local.dao.FavoriteListDAO
+import br.com.zup.projetofinalzup.data.datasource.remote.RetrofitService
+import br.com.zup.projetofinalzup.data.datasource.remote.model.MenuRequest
+import br.com.zup.projetofinalzup.data.model.MenuItem
 
-object Repository{
+class Repository(private val dao:FavoriteListDAO){
 
-    const val URL_BASE = "https://fun-points-api.herokuapp.com"
-
-    fun getAPI(): MenuItemAPI {
-        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-    return Retrofit.Builder().addConverterFactory(MoshiConverterFactory.create(moshi)).baseUrl(
-        URL_BASE).build().create(
-        MenuItemAPI::class.java)
+    suspend fun getMenu(menu:MenuRequest):List<MenuItem>{
+        return RetrofitService.getAPI().getMenu(menu)
     }
+
+    fun insertIntoDatabase(item:MenuItem) = dao.insertIntoDatabase(item)
+
+    fun updateFavList(item:MenuItem)= dao.updateFavList(item)
+
+    fun getFavoritedList():List<MenuItem> = dao.getFavoritedList()
+
 }
