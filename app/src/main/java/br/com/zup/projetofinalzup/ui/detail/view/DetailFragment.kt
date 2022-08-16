@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import br.com.zup.projetofinalzup.R
-import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
+import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.FragmentDetailBinding
 import br.com.zup.projetofinalzup.ui.detail.viewmodel.DetailViewModel
 import com.squareup.picasso.Picasso

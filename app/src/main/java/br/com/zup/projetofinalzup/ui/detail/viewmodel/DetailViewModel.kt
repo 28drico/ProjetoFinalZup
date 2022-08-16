@@ -2,7 +2,7 @@ package br.com.zup.projetofinalzup.ui.detail.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
+import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.domain.singleliveevent.SingleLiveEvent
 import br.com.zup.projetofinalzup.domain.usecase.DishesUseCase
 import br.com.zup.projetofinalzup.ui.viewstate.ViewState

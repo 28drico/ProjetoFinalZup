@@ -3,10 +3,9 @@ package br.com.zup.projetofinalzup.ui.menu.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.TypedArrayUtils.getString
 import androidx.recyclerview.widget.RecyclerView
 import br.com.zup.projetofinalzup.R
-import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
+import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.DishItemBinding
 import com.squareup.picasso.Picasso
 
@@ -47,7 +46,7 @@ class MenuAdapter (
         holder.showInfo(items)
 
         holder.binding.ivItemFavorite.setOnClickListener{
-            items.isFavorite = items.isFavorite!!
+            items.isFavorite = !(items.isFavorite ?: false)
             clickFav(items)
         }
         holder.binding.cvItem.setOnClickListener{

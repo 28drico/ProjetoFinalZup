@@ -1,4 +1,4 @@
-package br.com.zup.projetofinalzup.data.datasource.model
+package br.com.zup.projetofinalzup.data.model
 
 import android.os.Parcelable
 import androidx.room.Entity

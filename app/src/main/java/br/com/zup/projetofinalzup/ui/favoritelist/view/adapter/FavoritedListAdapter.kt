@@ -3,8 +3,7 @@ package br.com.zup.projetofinalzup.ui.favoritelist.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import br.com.zup.projetofinalzup.R
-import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
+import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.DishItemBinding
 import com.squareup.picasso.Picasso
 

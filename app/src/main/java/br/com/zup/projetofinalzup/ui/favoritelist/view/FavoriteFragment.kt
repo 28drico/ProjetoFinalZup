@@ -10,12 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.zup.projetofinalzup.domain.repository.Repository
-import br.com.zup.projetofinalzup.domain.repository.model.MenuRequest
+import br.com.zup.projetofinalzup.data.datasource.remote.RetrofitService
+import br.com.zup.projetofinalzup.data.datasource.remote.model.MenuRequest
 import br.com.zup.projetofinalzup.databinding.FragmentFavoriteBinding
 import br.com.zup.projetofinalzup.ui.favoritelist.view.adapter.FavoritedListAdapter
 import br.com.zup.projetofinalzup.ui.favoritelist.viewmodel.FavoriteListViewModel
 import br.com.zup.projetofinalzup.ui.viewstate.Status
+import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 
 class FavoriteFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteBinding
@@ -26,16 +27,16 @@ class FavoriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-        factory = FavoriteListViewModel.FavoriteListViewModelFactory(Repository)
+        factory = FavoriteListViewModel.FavoriteListViewModelFactory()
         viewModel = ViewModelProvider(this, factory).get(FavoriteListViewModel::class.java)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getFavoritedList(MenuRequest("31037721000108"))
+        viewModel.getFavoritedList()
 
-        viewModel.response.observe(viewLifecycleOwner, Observer {
+        viewModel.favState.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
                     binding.rvFavorite.adapter = FavoritedListAdapter(it.data!!)
