@@ -1,6 +1,7 @@
 package br.com.zup.projetofinalzup.ui.menu.viewmodel
 
 import androidx.lifecycle.*
+import br.com.zup.projetofinalzup.R
 import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.domain.singleliveevent.SingleLiveEvent
 import br.com.zup.projetofinalzup.domain.usecase.DishesUseCase
@@ -39,7 +40,7 @@ class MenuViewModel():ViewModel(){
                 }
                 favState.value = withContext
             }catch(e:Exception){
-                favState.value = ViewState.error(null,e.message)
+                favState.value = ViewState.error(null, "${R.string.fav_error}")
             }
         }
     }
@@ -51,7 +52,7 @@ class MenuViewModel():ViewModel(){
                 }
                 disfavState.value = withContext
             }catch(e:Exception){
-                disfavState.value = ViewState.error(null, e.message)
+                disfavState.value = ViewState.error(null, "${R.string.disfav_error}")
             }
         }
     }
