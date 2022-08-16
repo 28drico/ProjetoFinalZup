@@ -36,9 +36,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:contentDescription="ta na mao"
-                android:src="@drawable/tana_whitelogo">
-
+                android:src="@drawable/logo">
             </ImageView>
 
             <ImageView
