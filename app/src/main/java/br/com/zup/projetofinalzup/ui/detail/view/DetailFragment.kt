@@ -7,26 +7,45 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import br.com.zup.projetofinalzup.R
 import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.FragmentDetailBinding
 import br.com.zup.projetofinalzup.ui.detail.viewmodel.DetailViewModel
+import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 import com.squareup.picasso.Picasso
 
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
     private lateinit var viewModel: DetailViewModel
+    private lateinit var factory: DetailViewModel.DetailModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailBinding.inflate(layoutInflater, container, false)
+        factory = DetailViewModel.DetailModelFactory()
+        viewModel = ViewModelProvider(this,factory).get(DetailViewModel::class.java)
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dataRecovery()
+        viewModel.favorite.observe(this.viewLifecycleOwner){
+            when(it){
+                ViewState.success(it?.data) -> {
+                    if(it.data?.isFavorite == false){
+                        Toast.makeText(context,"${it.data.name} ${getString(R.string.item_disfav)}",Toast.LENGTH_SHORT).show()
+                    }else if(it.data?.isFavorite == true){
+                        Toast.makeText(context,"${it.data.name} ${getString(R.string.item_fav)}",Toast.LENGTH_SHORT).show()
+                    }
+                }
+                ViewState.error(null, it?.message) -> {
+                    Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
     private fun dataRecovery(){
         val item = arguments?.getParcelable<MenuItem>("ITEM_KEY")
@@ -50,7 +69,9 @@ class DetailFragment : Fragment() {
         binding.bvCartAdd.setOnClickListener{
             addItemCart(item!!)
         }
-
+        binding.ivFavorite.setOnClickListener{
+            viewModel.updateFavoritedList(item!!)
+        }
     }
     private fun itemsToCart(){
         TODO()
