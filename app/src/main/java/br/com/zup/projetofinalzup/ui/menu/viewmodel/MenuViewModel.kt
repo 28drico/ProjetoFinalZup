@@ -2,41 +2,40 @@ package br.com.zup.projetofinalzup.ui.menu.viewmodel
 
 import androidx.lifecycle.*
 import br.com.zup.projetofinalzup.data.model.MenuItem
-import br.com.zup.projetofinalzup.domain.repository.Repositoryapi
-import br.com.zup.projetofinalzup.data.datasource.remote.model.MenuRequest
+import br.com.zup.projetofinalzup.domain.singleliveevent.SingleLiveEvent
 import br.com.zup.projetofinalzup.domain.usecase.DishesUseCase
 import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MenuViewModel(private val repository:Repositoryapi):ViewModel(){
+class MenuViewModel():ViewModel(){
     private val useCase = DishesUseCase()
     val favState = MutableLiveData<ViewState<MenuItem>?>()
-    private val _menu = MutableLiveData<ViewState<List<MenuItem>>>()
-    val menu: LiveData<ViewState<List<MenuItem>>> get() = _menu
+    val disfavState = MutableLiveData<ViewState<MenuItem>?>()
+    val menu = SingleLiveEvent<ViewState<List<MenuItem>>>()
 
-    fun getMenu(menu:MenuRequest){
+    fun getMenu(){
         viewModelScope.launch {
-            _menu.value = ViewState.loading(null)
+            menu.value = ViewState.loading(null)
             try{
                 val withContext = withContext(Dispatchers.Default){
-                    repository.getAPI().getMenu(menu)
+                    useCase.getMenu()
                 }
                 withContext?.let {
-                    _menu.value = ViewState.success(it)
+                    menu.value = ViewState.success(it.data)
                 }
             }catch(e:Exception){
-                _menu.value = ViewState.error(null,e.message)
+                menu.value = ViewState.error(null,e.message)
             }
         }
     }
 
-    fun insertFavoriteItem(item:MenuItem){
+    fun updateFavList(item:MenuItem){
         viewModelScope.launch {
             try{
                 val withContext = withContext(Dispatchers.Default){
-                    useCase.favoriteItem(item)
+                    useCase.updateFavList(item)
                 }
                 favState.value = withContext
             }catch(e:Exception){
@@ -44,11 +43,23 @@ class MenuViewModel(private val repository:Repositoryapi):ViewModel(){
             }
         }
     }
+    fun disfavor(item:MenuItem){
+        viewModelScope.launch {
+            try{
+                val withContext = withContext(Dispatchers.Default) {
+                    useCase.updateFavList(item)
+                }
+                disfavState.value = withContext
+            }catch(e:Exception){
+                disfavState.value = ViewState.error(null, e.message)
+            }
+        }
+    }
 
-    class MenuViewModelFactory(val repository:Repositoryapi):ViewModelProvider.Factory{
+    class MenuViewModelFactory():ViewModelProvider.Factory{
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if(modelClass.isAssignableFrom(MenuViewModel::class.java)){
-                return MenuViewModel(repository) as T
+                return MenuViewModel() as T
             }
             throw IllegalArgumentException("unknown viewmodel class")
         }
