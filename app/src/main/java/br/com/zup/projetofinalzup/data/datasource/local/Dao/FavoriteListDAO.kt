@@ -6,7 +6,7 @@ import br.com.zup.projetofinalzup.data.model.MenuItem
 @Dao
 interface FavoriteListDAO {
 
-    @Query("Select * From item ORDER BY name ASC")
+    @Query("Select * From item WHERE isFavorite = 1")
     fun getFavoritedList(): List<MenuItem>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
@@ -14,4 +14,6 @@ interface FavoriteListDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertIntoDatabase(item: MenuItem)
+
+
 }

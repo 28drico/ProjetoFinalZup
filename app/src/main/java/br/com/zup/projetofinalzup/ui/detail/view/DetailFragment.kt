@@ -35,11 +35,11 @@ class DetailFragment : Fragment() {
         viewModel.favorite.observe(this.viewLifecycleOwner){
             when(it){
                 ViewState.success(it?.data) -> {
-                    if(it.data?.isFavorite == false){
-                        Toast.makeText(context,"${it.data.name} ${getString(R.string.item_disfav)}",Toast.LENGTH_SHORT).show()
-                    }else if(it.data?.isFavorite == true){
-                        Toast.makeText(context,"${it.data.name} ${getString(R.string.item_fav)}",Toast.LENGTH_SHORT).show()
-                    }
+//                    if(it.data?.isFavorite == false){
+//                        Toast.makeText(context,"${it.data.name} ${getString(R.string.item_disfav)}",Toast.LENGTH_SHORT).show()
+//                    }else if(it.data?.isFavorite == true){
+//                        Toast.makeText(context,"${it.data.name} ${getString(R.string.item_fav)}",Toast.LENGTH_SHORT).show()
+//                    }
                 }
                 ViewState.error(null, it?.message) -> {
                     Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()
@@ -55,22 +55,28 @@ class DetailFragment : Fragment() {
             binding.tvItemDescription.text = it.description
             val value = "${getString(R.string.item_price)} ${it.value}"
             binding.tvItemPrice.text = value
-
-            binding.ivFavorite.setImageDrawable(
-                ContextCompat.getDrawable(
-                    binding.root.context,
-                    if(it.isFavorite == true)
-                        R.drawable.fav_icon
-                else
-                    R.drawable.disfav_icon
-                )
-            )
+            updateColor(item)
+//            binding.ivFavorite.setImageDrawable(
+//                ContextCompat.getDrawable(
+//                    binding.root.context,
+//                    if(it.isFavorite == true)
+//                        R.drawable.fav_icon
+//                else
+//                    R.drawable.disfav_icon
+//                )
+//            )
         }
         binding.bvCartAdd.setOnClickListener{
             addItemCart(item!!)
         }
         binding.ivFavorite.setOnClickListener{
-            viewModel.updateFavoritedList(item!!)
+            if (item != null) {
+                item.isFavorite = !item.isFavorite
+                updateColor(item)
+                favoriteItem(item)
+                viewModel.updateFavoritedList(item)
+            }
+
         }
     }
     private fun itemsToCart(){
@@ -79,5 +85,19 @@ class DetailFragment : Fragment() {
     private fun addItemCart(item:MenuItem){
         viewModel.sendItemToCart(item)
         Toast.makeText(context,R.string.item_add,Toast.LENGTH_SHORT).show()
+    }
+
+    private fun updateColor(item: MenuItem){
+        binding.ivFavorite.setImageDrawable(ContextCompat.getDrawable
+            (binding.root.context,if (item.isFavorite) R.drawable.fav_icon else R.drawable.disfav_icon))
+    }
+
+    fun favoriteItem(item:MenuItem){
+        if (item.isFavorite){
+            Toast.makeText(context,"${item.name} ${getString(R.string.item_fav)}",Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(context,"${item.name} ${getString(R.string.item_disfav)}",Toast.LENGTH_SHORT).show()
+        }
+
     }
 }
