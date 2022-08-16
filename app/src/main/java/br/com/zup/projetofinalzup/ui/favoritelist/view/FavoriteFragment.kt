@@ -15,6 +15,7 @@ import br.com.zup.projetofinalzup.data.datasource.remote.model.MenuRequest
 import br.com.zup.projetofinalzup.databinding.FragmentFavoriteBinding
 import br.com.zup.projetofinalzup.ui.favoritelist.view.adapter.FavoritedListAdapter
 import br.com.zup.projetofinalzup.ui.favoritelist.viewmodel.FavoriteListViewModel
+import br.com.zup.projetofinalzup.ui.home.view.HomeActivity
 import br.com.zup.projetofinalzup.ui.viewstate.Status
 import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 
@@ -27,6 +28,7 @@ class FavoriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentFavoriteBinding.inflate(inflater, container, false)
+        (activity as HomeActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         factory = FavoriteListViewModel.FavoriteListViewModelFactory()
         viewModel = ViewModelProvider(this, factory).get(FavoriteListViewModel::class.java)
         return binding.root
