@@ -1,33 +1,43 @@
 package br.com.zup.projetofinalzup.domain.usecase
 
 import br.com.zup.projetofinalzup.data.datasource.local.AppApplication
-import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
-import br.com.zup.projetofinalzup.domain.repository.FavoritedListRepository
+import br.com.zup.projetofinalzup.data.datasource.remote.model.MenuRequest
+import br.com.zup.projetofinalzup.data.model.MenuItem
+import br.com.zup.projetofinalzup.domain.repository.Repository
 import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 
 class DishesUseCase {
     private val dao = AppApplication.getdatabase().favoriteListDAO()
-    private val repository = FavoritedListRepository(dao)
+    private val repository = Repository(dao)
 
-    suspend fun favoriteItem(item: MenuItem): ViewState<MenuItem> {
+    suspend fun getMenu():ViewState<List<MenuItem>>{
+        return try{
+            val response = repository.getMenu(MenuRequest("31037721000108"))
+            ViewState.success(response)
+        }catch (e: Exception) {
+            ViewState.error(null, e.message)
+        }
+    }
+    fun updateFavList(item: MenuItem): ViewState<MenuItem> {
         return try {
-            repository.favoriteItem(item)
+            repository.insertIntoDatabase(item)
+            repository.updateFavList(item)
             ViewState.success(item)
         } catch (e: Exception) {
             ViewState.error(null, e.message)
         }
     }
 
-    suspend fun getFavoritedList(): ViewState<List<MenuItem>> {
+    fun getFavoritedList(): ViewState<List<MenuItem>> {
         return try {
-            val menu = repository.getFavoritedList()
-            ViewState.success(menu)
+            val list = repository.getFavoritedList()
+            ViewState.success(list)
         } catch (e: Exception) {
             ViewState.error(null, e.message)
         }
     }
 
-    suspend fun cart(item: MenuItem): ViewState<MenuItem> {
+    fun cart(item: MenuItem): ViewState<MenuItem> {
         return try {
             TODO()
             ViewState.success(item)
@@ -35,7 +45,7 @@ class DishesUseCase {
             ViewState.error(null, e.message)
         }
     }
-    suspend fun getCartList():ViewState<List<MenuItem>> {
+    fun getCartList():ViewState<List<MenuItem>> {
         return try {
             TODO()
 
