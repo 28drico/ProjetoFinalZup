@@ -17,6 +17,7 @@ import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.FragmentCartBinding
 import br.com.zup.projetofinalzup.ui.cart.adapter.CartAdapter
 import br.com.zup.projetofinalzup.ui.cart.viewmodel.CartViewModel
+import br.com.zup.projetofinalzup.ui.home.view.HomeActivity
 import br.com.zup.projetofinalzup.ui.viewstate.Status
 
 class CartFragment : Fragment() {
@@ -31,11 +32,13 @@ class CartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCartBinding.inflate(layoutInflater, container, false)
+        (activity as HomeActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         factory = CartViewModel.CartModelFactory()
         viewModel = ViewModelProvider(this,factory).get(CartViewModel::class.java)
         binding.bvCloseOrder.setOnClickListener{
             NavHostFragment.findNavController(this).navigate(R.id.action_cartFragment_to_endFragment)
         }
+
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,6 +47,7 @@ class CartFragment : Fragment() {
         /**  view não implementada ainda (usecase)
         viewModel.getCartList()
         **/
+
         viewModel.cartState.observe(viewLifecycleOwner, Observer{
             when(it.status){
                 Status.SUCCESS -> {
