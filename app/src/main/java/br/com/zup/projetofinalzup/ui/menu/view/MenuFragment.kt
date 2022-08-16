@@ -63,21 +63,13 @@ class MenuFragment : Fragment() {
         viewModel.favState.observe(this.viewLifecycleOwner){
             when(it){
                 ViewState.success(it?.data) -> {
-                    Toast.makeText(context,"${it.data?.name} ${getString(R.string.item_fav)}",Toast.LENGTH_SHORT).show()
-                    adapter.notifyDataSetChanged()
-                }
-                ViewState.error(null, it?.message) -> {
-                    Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-        viewModel.disfavState.observe(this.viewLifecycleOwner){
-            when(it){
-                ViewState.success(it?.data) -> {
-                    if(it.data?.isFavorite!!){
-                        Toast.makeText(context,"${it.data?.name} ${getString(R.string.item_disfav)}",Toast.LENGTH_SHORT).show()
+                    if(it.data?.isFavorite == false){
+                        Toast.makeText(context,"${it.data.name} ${getString(R.string.item_disfav)}",Toast.LENGTH_SHORT).show()
                         adapter.notifyDataSetChanged()
+                    }else if(it.data?.isFavorite == true){
+                        Toast.makeText(context,"${it.data.name} ${getString(R.string.item_fav)}",Toast.LENGTH_SHORT).show()
                     }
+                    adapter.notifyDataSetChanged()
                 }
                 ViewState.error(null, it?.message) -> {
                     Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()
