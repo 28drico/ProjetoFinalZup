@@ -88,7 +88,6 @@ class MenuFragment : Fragment() {
     fun goToDetail(item: MenuItem){
         val bundle = bundleOf("ITEM_KEY" to item)
         NavHostFragment.findNavController(this).navigate(R.id.action_menuFragment_to_detailFragment,bundle)
-
     }
 
     fun favoriteItem(item:MenuItem){
