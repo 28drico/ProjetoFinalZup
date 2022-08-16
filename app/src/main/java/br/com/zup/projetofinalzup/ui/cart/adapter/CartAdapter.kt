@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import br.com.zup.projetofinalzup.R
 import br.com.zup.projetofinalzup.data.datasource.local.AppApplication
-import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
+import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.CartItemBinding
 import com.squareup.picasso.Picasso
 
@@ -32,7 +32,7 @@ class CartAdapter (private var cartList: List<MenuItem>,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val menu = cartList[position]
-        if(cartList.size == 0){
+        if(cartList.isEmpty()){
             Toast.makeText(AppApplication(), R.string.empty_cart,Toast.LENGTH_LONG).show()
         }else {
             holder.showInfo(menu)

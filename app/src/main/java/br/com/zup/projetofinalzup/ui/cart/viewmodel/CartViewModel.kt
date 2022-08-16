@@ -1,9 +1,7 @@
 package br.com.zup.projetofinalzup.ui.cart.viewmodel
 
 import androidx.lifecycle.*
-import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
-import br.com.zup.projetofinalzup.domain.repository.Repository
-import br.com.zup.projetofinalzup.domain.repository.model.MenuRequest
+import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.domain.singleliveevent.SingleLiveEvent
 import br.com.zup.projetofinalzup.domain.usecase.DishesUseCase
 import br.com.zup.projetofinalzup.ui.viewstate.ViewState
@@ -11,15 +9,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CartViewModel(private val repository:Repository):ViewModel(){
+class CartViewModel():ViewModel(){
     private val useCase = DishesUseCase()
     val cartState = SingleLiveEvent<ViewState<List<MenuItem>>>()
-    private val _order = MutableLiveData<ViewState<List<MenuItem>>>()
-    val order: LiveData<ViewState<List<MenuItem>>> get() = _order
 
     fun getCartList(){
         viewModelScope.launch {
-            _order.value = ViewState.loading(null)
+            cartState.value = ViewState.loading(null)
             try{
                 val withContext = withContext(Dispatchers.Default){
                     useCase.getCartList()
@@ -32,10 +28,10 @@ class CartViewModel(private val repository:Repository):ViewModel(){
     }
 
 
-    class CartModelFactory(val repository: Repository): ViewModelProvider.Factory{
+    class CartModelFactory(): ViewModelProvider.Factory{
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if(modelClass.isAssignableFrom(CartViewModel::class.java)){
-                return CartViewModel(repository) as T
+                return CartViewModel() as T
             }
             throw IllegalArgumentException("unknown viewmodel class")
         }
