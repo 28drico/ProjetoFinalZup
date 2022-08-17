@@ -30,7 +30,7 @@ Em breve disponivel na play store android de seu celular
 
 ○ Dados dinâmicos(consumo de API)
 
-○ utilizção de bando de dados firebase
+○ utilização de bando de dados firebase
 
 ○ Aplicação de conceito SOLID
 
