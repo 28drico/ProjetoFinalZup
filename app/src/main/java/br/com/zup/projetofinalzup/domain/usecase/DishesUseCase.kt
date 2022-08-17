@@ -10,18 +10,22 @@ class DishesUseCase {
     private val dao = AppApplication.getdatabase().favoriteListDAO()
     private val repository = Repository(dao)
 
-    suspend fun getMenu():ViewState<List<MenuItem>>{
-        return try{
+    suspend fun getMenu(): ViewState<List<MenuItem>> {
+        return try {
             val response = repository.getMenu(MenuRequest("31037721000108"))
             ViewState.success(response)
-        }catch (e: Exception) {
+        } catch (e: Exception) {
             ViewState.error(null, e.message)
         }
     }
+
     fun updateFavList(item: MenuItem): ViewState<MenuItem> {
         return try {
-            repository.insertIntoDatabase(item)
-            repository.updateFavList(item)
+            if (item.isFavorite) {
+                repository.insertIntoDatabase(item)
+            } else {
+                repository.deleteFromDatabase(item)
+            }
             ViewState.success(item)
         } catch (e: Exception) {
             ViewState.error(null, e.message)
@@ -31,7 +35,11 @@ class DishesUseCase {
     fun getFavoritedList(): ViewState<List<MenuItem>> {
         return try {
             val list = repository.getFavoritedList()
-            ViewState.success(list)
+            if (list.isEmpty()) {
+                ViewState.empty(list)
+            } else {
+                ViewState.success(list)
+            }
         } catch (e: Exception) {
             ViewState.error(null, e.message)
         }
@@ -46,9 +54,10 @@ class DishesUseCase {
             ViewState.error(null, e.message)
         }
     }
-    fun getCartList():ViewState<List<MenuItem>> {
+
+    fun getCartList(): ViewState<List<MenuItem>> {
         return try {
-            val list =  repository.getCartList()
+            val list = repository.getCartList()
             ViewState.success(list)
         } catch (e: Exception) {
             ViewState.error(null, e.message)

@@ -22,4 +22,6 @@ class Repository(private val dao:FavoriteListDAO){
     fun updateCartList(item:MenuItem)= dao.updateCartList(item)
 
     fun getCartList():List<MenuItem> = dao.getCartList()
+
+    fun deleteFromDatabase(item: MenuItem) = dao.deleteFromDatabase(item.name)
 }
