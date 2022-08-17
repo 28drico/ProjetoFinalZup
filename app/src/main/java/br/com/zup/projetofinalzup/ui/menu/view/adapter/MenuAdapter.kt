@@ -46,7 +46,7 @@ class MenuAdapter (
         holder.showInfo(items)
 
         holder.binding.ivItemFavorite.setOnClickListener{
-            items.isFavorite = !(items.isFavorite ?: false)
+            items.isFavorite = !items.isFavorite
             notifyItemChanged(position)
             clickFav(items)
         }

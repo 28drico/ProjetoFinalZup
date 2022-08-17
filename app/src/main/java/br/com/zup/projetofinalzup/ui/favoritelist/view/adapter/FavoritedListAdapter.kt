@@ -7,7 +7,9 @@ import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.DishItemBinding
 import com.squareup.picasso.Picasso
 
-class FavoritedListAdapter (private var favoritedList: List<MenuItem>
+class FavoritedListAdapter (
+    private var favoritedList: List<MenuItem>,
+    private val clickDetail: (item: MenuItem) -> Unit
 ) : RecyclerView.Adapter<FavoritedListAdapter.ViewHolder>(){
 
     class ViewHolder(val binding: DishItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -28,6 +30,9 @@ class FavoritedListAdapter (private var favoritedList: List<MenuItem>
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = favoritedList[position]
         holder.showInfo(item)
+        holder.binding.cvItem.setOnClickListener{
+            clickDetail(item)
+        }
     }
 
     override fun getItemCount() = favoritedList.size
