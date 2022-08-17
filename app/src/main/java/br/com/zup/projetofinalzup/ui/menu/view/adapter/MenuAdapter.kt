@@ -13,6 +13,7 @@ class MenuAdapter (
     private var menu: List<MenuItem>,
     private val clickDetail: (item: MenuItem) -> Unit,
     private val clickFav: (item: MenuItem) -> Unit
+//    private val listItemFav : List<MenuItem>
 ) :
     RecyclerView.Adapter<MenuAdapter.ViewHolder>(){
 
@@ -23,7 +24,8 @@ class MenuAdapter (
             val value = "R$ ${item.value}"
             binding.tvItemValue.text = value
             Picasso.get().load(item.urlImageProduct).into(binding.ivItemImage)
-
+//            val isFavorite : Boolean = false
+//            isFavorite.
             binding.ivItemFavorite.setImageDrawable(
                 ContextCompat.getDrawable(
                     binding.root.context,
