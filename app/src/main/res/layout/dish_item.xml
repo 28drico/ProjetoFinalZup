@@ -26,7 +26,7 @@
             android:textColor="@color/dark_gray"
             android:textSize="@dimen/text_15"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/ivItemImage"
+            app:layout_constraintEnd_toStartOf="@id/cvIvItemImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,7 +44,7 @@
             android:layout_marginStart="@dimen/size_10"
             android:layout_marginBottom="@dimen/size_20"
             android:layout_marginEnd="@dimen/text_15"
-            app:layout_constraintEnd_toStartOf="@id/ivItemImage"
+            app:layout_constraintEnd_toStartOf="@id/cvIvItemImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvItemTitle" />
 
@@ -61,20 +61,30 @@
             android:layout_marginBottom="@dimen/size_20"
             android:justificationMode="inter_word"
             android:maxLines="3"
-            app:layout_constraintEnd_toStartOf="@id/ivItemImage"
+            app:layout_constraintEnd_toStartOf="@id/cvIvItemImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvItemDescription"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvIvItemImage"
+            android:layout_width="@dimen/size_90"
+            android:layout_height="@dimen/size_90"
+            app:layout_constraintBottom_toTopOf="@id/ivItemFavorite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="@dimen/size_16"
+            android:layout_marginEnd="@dimen/size_30">
+
         <ImageView
+
             android:id="@+id/ivItemImage"
             android:layout_width="@dimen/size_90"
             android:layout_height="@dimen/size_90"
             android:src="@drawable/qrcode_image"
-            android:layout_marginEnd="@dimen/size_30"
-            app:layout_constraintBottom_toTopOf="@id/ivItemFavorite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
 
         <ImageView
             android:id="@+id/ivItemFavorite"
