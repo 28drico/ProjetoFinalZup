@@ -2,7 +2,9 @@ package br.com.zup.projetofinalzup.ui.favoritelist.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import br.com.zup.projetofinalzup.R
 import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.DishItemBinding
 import com.squareup.picasso.Picasso
@@ -19,6 +21,16 @@ class FavoritedListAdapter (
             val value = "R$ ${item.value}"
             binding.tvItemValue.text = value
             Picasso.get().load(item.urlImageProduct).into(binding.ivItemImage)
+
+            binding.ivItemFavorite.setImageDrawable(
+                ContextCompat.getDrawable(
+                    binding.root.context,
+                    if (item.isFavorite)
+                        R.drawable.fav_icon
+                    else
+                        R.drawable.icon_heart
+                )
+            )
         }
     }
 

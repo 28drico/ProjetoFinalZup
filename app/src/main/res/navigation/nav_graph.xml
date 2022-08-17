@@ -32,11 +32,11 @@
         android:label=""
         tools:layout="@layout/fragment_cart" >
         <action
-            android:id="@+id/action_cartFragment_to_detailFragment2"
-            app:destination="@id/detailFragment" />
-        <action
             android:id="@+id/action_cartFragment_to_endFragment"
             app:destination="@id/endFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
