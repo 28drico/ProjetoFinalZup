@@ -88,7 +88,7 @@ class DetailFragment : Fragment() {
 
     private fun updateColor(item: MenuItem){
         binding.ivFavorite.setImageDrawable(ContextCompat.getDrawable
-            (binding.root.context,if (item.isFavorite) R.drawable.fav_icon else R.drawable.disfav_icon))
+            (binding.root.context,if (item.isFavorite) R.drawable.fav_icon else R.drawable.icon_heart))
     }
 
     fun favoriteItem(item:MenuItem){
