@@ -13,16 +13,9 @@ O aplicativo  pertencente a Zup tem como objetivo agilizar o fluxo de pedidos em
 Projeto em desenvolvimento
 
 ## FUNCIONALIDADES E DEMONSTRAÇÃO DA APLICAÇÃO:
+![zup7](https://user-images.githubusercontent.com/102183303/185149456-a0b381b4-f275-40c9-b3a9-25a64da19166.gif)
 
-funcionalidade 1 “adicionar novo”: cria novos cursos
 
-<img src="public/imagens/criar.gif">
-
-funcionalidade 2 “editar”: alterar os cursos existentes
-<img src="public/imagens/editar.gif">
-
-funcionalidade 3 “excluir”: apagar cursos existentes
-<img src="public/imagens/excluir.gif">
 
 ## ACESSO AO APLICATIVO:
 
