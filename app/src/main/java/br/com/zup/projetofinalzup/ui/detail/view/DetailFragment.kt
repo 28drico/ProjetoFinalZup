@@ -66,7 +66,7 @@ class DetailFragment : Fragment() {
 //                )
 //            )
         }
-        binding.bvCartAdd.setOnClickListener{
+        binding.tvCartAdd.setOnClickListener{
             addItemCart(item!!)
         }
         binding.ivFavorite.setOnClickListener{
@@ -76,7 +76,6 @@ class DetailFragment : Fragment() {
                 favoriteItem(item)
                 viewModel.updateFavoritedList(item)
             }
-
         }
     }
     private fun itemsToCart(){
@@ -98,6 +97,5 @@ class DetailFragment : Fragment() {
         }else{
             Toast.makeText(context,"${item.name} ${getString(R.string.item_disfav)}",Toast.LENGTH_SHORT).show()
         }
-
     }
 }
