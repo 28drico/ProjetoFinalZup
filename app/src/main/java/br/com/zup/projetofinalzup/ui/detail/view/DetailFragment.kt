@@ -12,7 +12,6 @@ import br.com.zup.projetofinalzup.R
 import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.FragmentDetailBinding
 import br.com.zup.projetofinalzup.ui.detail.viewmodel.DetailViewModel
-import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 import com.squareup.picasso.Picasso
 
 class DetailFragment : Fragment() {
@@ -32,20 +31,6 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dataRecovery()
-        viewModel.favorite.observe(this.viewLifecycleOwner){
-            when(it){
-                ViewState.success(it?.data) -> {
-//                    if(it.data?.isFavorite == false){
-//                        Toast.makeText(context,"${it.data.name} ${getString(R.string.item_disfav)}",Toast.LENGTH_SHORT).show()
-//                    }else if(it.data?.isFavorite == true){
-//                        Toast.makeText(context,"${it.data.name} ${getString(R.string.item_fav)}",Toast.LENGTH_SHORT).show()
-//                    }
-                }
-                ViewState.error(null, it?.message) -> {
-                    Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
     }
     private fun dataRecovery(){
         val item = arguments?.getParcelable<MenuItem>("ITEM_KEY")
@@ -58,8 +43,9 @@ class DetailFragment : Fragment() {
             updateColor(item)
         }
         binding.tvCartAdd.setOnClickListener{
-            Toast.makeText(context, "apenas para não quebrar o app",Toast.LENGTH_SHORT).show()
-            TODO()
+            if (item != null) {
+                addItemCart(item)
+            }
         }
         binding.ivFavorite.setOnClickListener{
             if (item != null) {
@@ -67,12 +53,12 @@ class DetailFragment : Fragment() {
                 updateColor(item)
                 favoriteItem(item)
                 viewModel.updateFavoritedList(item)
+                binding.ivFavorite.setImageDrawable(ContextCompat.getDrawable
+                    (binding.root.context,if (item.isFavorite) R.drawable.fav_icon else R.drawable.icon_heart))
             }
         }
     }
-    private fun itemsToCart(){
-        TODO()
-    }
+
     private fun addItemCart(item:MenuItem){
         viewModel.sendItemToCart(item)
         Toast.makeText(context,R.string.item_add,Toast.LENGTH_SHORT).show()
