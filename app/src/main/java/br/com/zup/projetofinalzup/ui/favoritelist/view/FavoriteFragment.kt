@@ -42,6 +42,12 @@ class FavoriteFragment : Fragment() {
 
         viewModel.favState.observe(viewLifecycleOwner, Observer {
             when (it.status) {
+                Status.EMPTY -> {
+                    Toast.makeText(context, "${it.message}", Toast.LENGTH_LONG).show()
+                    binding.ivEmptyListFav.setImageResource(R.drawable.empty_list)
+                    binding.ivEmptyListFav.isVisible = true
+                    binding.pbLoading.isVisible = false
+                }
                 Status.SUCCESS -> {
                     binding.rvFavorite.adapter = adapter
                     binding.rvFavorite.layoutManager = LinearLayoutManager(context)
@@ -57,6 +63,7 @@ class FavoriteFragment : Fragment() {
                     Toast.makeText(context, "${it.message}", Toast.LENGTH_LONG).show()
                     binding.pbLoading.isVisible = false
                 }
+                else -> {}
             }
         })
     }

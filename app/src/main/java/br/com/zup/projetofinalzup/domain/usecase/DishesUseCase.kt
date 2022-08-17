@@ -31,7 +31,11 @@ class DishesUseCase {
     fun getFavoritedList(): ViewState<List<MenuItem>> {
         return try {
             val list = repository.getFavoritedList()
-            ViewState.success(list)
+            if (list.isEmpty()){
+                ViewState.empty(list)
+            }else{
+                ViewState.success(list)
+            }
         } catch (e: Exception) {
             ViewState.error(null, e.message)
         }

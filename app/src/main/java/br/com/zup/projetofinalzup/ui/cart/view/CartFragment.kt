@@ -64,6 +64,7 @@ class CartFragment : Fragment() {
                     Toast.makeText( context,"${it.message}", Toast.LENGTH_LONG).show()
                     binding.pbLoading.isVisible = false
                 }
+                else -> {}
             }
         })
     }
