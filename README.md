@@ -58,7 +58,7 @@ Para implementar as dependências do projeto basta acessar o build.gradle do apl
 ![greade1](https://user-images.githubusercontent.com/102183303/185227636-901762e3-3175-46b6-9a8f-0429271d1c2d.JPG)
 
 
-ou localizando o arquivo  clicando em de shift shift e digitando build.gradle selecionando o build.gradle do app
+ou localizando o arquivo  clicando em  shift shift e digitando build.gradle selecionando o build.gradle do app
 
 ![grEADE2](https://user-images.githubusercontent.com/102183303/185227742-5881f3e7-cfa0-49e8-a5e7-9667f42e751d.JPG)
 
