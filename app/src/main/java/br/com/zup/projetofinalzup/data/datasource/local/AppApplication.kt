@@ -11,7 +11,7 @@ class AppApplication: Application() {
             applicationContext,
             FavoriteListDatabase::class.java, "database-character"
         )
-            .fallbackToDestructiveMigration()
+            .fallbackToDestructiveMigration().allowMainThreadQueries()
             .build()
 
     }
