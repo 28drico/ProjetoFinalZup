@@ -17,16 +17,15 @@ class FavoriteListViewModel():ViewModel() {
         viewModelScope.launch {
             favState.value = ViewState.loading(null)
             try {
-                val withContext = withContext(Dispatchers.Default) {
+                val response = withContext(Dispatchers.Default) {
                     useCase.getFavoritedList()
                 }
-                favState.value = withContext
+                favState.value = response
             } catch (e: Exception) {
                 favState.value = ViewState.error(null, e.message)
             }
         }
     }
-
 
     class FavoriteListViewModelFactory(): ViewModelProvider.Factory{
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
