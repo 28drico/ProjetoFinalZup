@@ -67,7 +67,8 @@ class DetailFragment : Fragment() {
 //            )
         }
         binding.tvCartAdd.setOnClickListener{
-            addItemCart(item!!)
+            Toast.makeText(context, "apenas para não quebrar o app",Toast.LENGTH_SHORT).show()
+            TODO()
         }
         binding.ivFavorite.setOnClickListener{
             if (item != null) {
