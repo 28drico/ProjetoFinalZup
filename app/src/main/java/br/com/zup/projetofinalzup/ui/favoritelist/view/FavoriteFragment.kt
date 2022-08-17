@@ -10,14 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.zup.projetofinalzup.data.datasource.remote.RetrofitService
-import br.com.zup.projetofinalzup.data.datasource.remote.model.MenuRequest
 import br.com.zup.projetofinalzup.databinding.FragmentFavoriteBinding
 import br.com.zup.projetofinalzup.ui.favoritelist.view.adapter.FavoritedListAdapter
 import br.com.zup.projetofinalzup.ui.favoritelist.viewmodel.FavoriteListViewModel
 import br.com.zup.projetofinalzup.ui.home.view.HomeActivity
 import br.com.zup.projetofinalzup.ui.viewstate.Status
-import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 
 class FavoriteFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteBinding

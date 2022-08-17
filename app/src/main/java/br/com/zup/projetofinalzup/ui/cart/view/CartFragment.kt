@@ -26,7 +26,6 @@ class CartFragment : Fragment() {
     private lateinit var factory: CartViewModel.CartModelFactory
     private val adapter: CartAdapter by lazy { CartAdapter(arrayListOf(), this::goToDetail) }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,9 +37,9 @@ class CartFragment : Fragment() {
         binding.bvCloseOrder.setOnClickListener{
             NavHostFragment.findNavController(this).navigate(R.id.action_cartFragment_to_endFragment)
         }
-
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -68,6 +67,7 @@ class CartFragment : Fragment() {
             }
         })
     }
+
     fun goToDetail(item: MenuItem){
         val bundle = bundleOf("ITEM_KEY" to item)
         NavHostFragment.findNavController(this).navigate(R.id.action_cartFragment_to_detailFragment2,bundle)

@@ -30,7 +30,7 @@ class MenuAdapter (
                     if (item.isFavorite == true)
                         R.drawable.fav_icon
                     else
-                        R.drawable.notfav_icon
+                        R.drawable.icon_heart
                 )
             )
         }

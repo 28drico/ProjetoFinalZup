@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
+    android:background="@color/background"
     tools:context=".ui.cart.view.CartFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -33,6 +33,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/bvTotalOrder"/>
+
     <Button
         android:id="@+id/bvTotalOrder"
         android:layout_width="180dp"

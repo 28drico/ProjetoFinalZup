@@ -27,7 +27,6 @@ class CartViewModel():ViewModel(){
         }
     }
 
-
     class CartModelFactory(): ViewModelProvider.Factory{
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if(modelClass.isAssignableFrom(CartViewModel::class.java)){

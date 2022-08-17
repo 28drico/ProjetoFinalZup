@@ -66,8 +66,9 @@ class DetailFragment : Fragment() {
 //                )
 //            )
         }
-        binding.bvCartAdd.setOnClickListener{
-            addItemCart(item!!)
+        binding.tvCartAdd.setOnClickListener{
+            Toast.makeText(context, "apenas para não quebrar o app",Toast.LENGTH_SHORT).show()
+            TODO()
         }
         binding.ivFavorite.setOnClickListener{
             if (item != null) {
@@ -76,7 +77,6 @@ class DetailFragment : Fragment() {
                 favoriteItem(item)
                 viewModel.updateFavoritedList(item)
             }
-
         }
     }
     private fun itemsToCart(){
@@ -89,7 +89,7 @@ class DetailFragment : Fragment() {
 
     private fun updateColor(item: MenuItem){
         binding.ivFavorite.setImageDrawable(ContextCompat.getDrawable
-            (binding.root.context,if (item.isFavorite) R.drawable.fav_icon else R.drawable.disfav_icon))
+            (binding.root.context,if (item.isFavorite) R.drawable.fav_icon else R.drawable.icon_heart))
     }
 
     fun favoriteItem(item:MenuItem){
@@ -98,6 +98,5 @@ class DetailFragment : Fragment() {
         }else{
             Toast.makeText(context,"${item.name} ${getString(R.string.item_disfav)}",Toast.LENGTH_SHORT).show()
         }
-
     }
 }

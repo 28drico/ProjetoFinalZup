@@ -15,5 +15,4 @@ interface FavoriteListDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertIntoDatabase(item: MenuItem)
 
-
 }

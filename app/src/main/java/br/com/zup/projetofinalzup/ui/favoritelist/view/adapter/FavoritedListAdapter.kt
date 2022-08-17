@@ -26,8 +26,8 @@ class FavoritedListAdapter (private var favoritedList: List<MenuItem>
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val favList = favoritedList[position]
-        holder.showInfo(favList)
+        val item = favoritedList[position]
+        holder.showInfo(item)
     }
 
     override fun getItemCount() = favoritedList.size
