@@ -2,10 +2,7 @@ package br.com.zup.projetofinalzup.ui.cart.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import br.com.zup.projetofinalzup.R
-import br.com.zup.projetofinalzup.data.datasource.local.AppApplication
 import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.CartItemBinding
 import com.squareup.picasso.Picasso
@@ -21,7 +18,7 @@ class CartAdapter (private var cartList: List<MenuItem>,
             binding.tvItemValue.text = value.toString()
             binding.tvItemQtd.text = "4"
             Picasso.get().load(item.urlImageProduct).into(binding.ivItemImage)
-            TODO()
+
         }
     }
 
@@ -32,14 +29,11 @@ class CartAdapter (private var cartList: List<MenuItem>,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val menu = cartList[position]
-        if(cartList.isEmpty()){
-            Toast.makeText(AppApplication(), R.string.empty_cart,Toast.LENGTH_LONG).show()
-        }else {
-            holder.showInfo(menu)
-            holder.binding.ivItemImage.setOnClickListener{
-                clickDetail(menu)
-            }
+        holder.showInfo(menu)
+        holder.binding.cvCart.setOnClickListener{
+            clickDetail(menu)
         }
+
     }
 
     override fun getItemCount() = cartList.size
