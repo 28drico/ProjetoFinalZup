@@ -40,7 +40,7 @@ Em breve disponivel na play store android de seu celular
 
 ○ Aplicação de conceito SOLID
 
-○ Aplicação de conceito clen code
+○ Aplicação de conceito clean code
 
 ## PESSOAS DESENVOLVEDORAS DO PROJETO:
 
