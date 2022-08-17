@@ -13,6 +13,22 @@ O aplicativo  pertencente a Zup tem como objetivo agilizar o fluxo de pedidos em
 Projeto em desenvolvimento
 
 ## FUNCIONALIDADES E DEMONSTRAÇÃO DA APLICAÇÃO:
+
+PRINCIPAIS FUNCIONALIDADES:
+
+○ Acesso do cardápio via qrcode
+
+○ Abertura de pedido
+
+○ Adicionar itens ao pedido
+
+○ Criação de lista de pratos favoritos
+
+○ Fechamento de pedido com demonstrativo de valor do pedido
+
+○ Solicitação de pagamento da conta
+
+
 ![ProjetoFinal mp4](https://user-images.githubusercontent.com/102183303/185155569-5ec3f66c-c066-4d9f-8098-9eff9cdb57b0.gif)
 
 
