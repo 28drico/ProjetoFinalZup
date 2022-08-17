@@ -25,7 +25,7 @@ class CartFragment : Fragment() {
     private lateinit var viewModel: CartViewModel
     private lateinit var factory: CartViewModel.CartModelFactory
     private val adapter: CartAdapter by lazy { CartAdapter(arrayListOf(), this::goToDetail) }
-    
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
