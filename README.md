@@ -13,7 +13,8 @@ O aplicativo  pertencente a Zup tem como objetivo agilizar o fluxo de pedidos em
 Projeto em desenvolvimento
 
 ## FUNCIONALIDADES E DEMONSTRAÇÃO DA APLICAÇÃO:
-![zup7](https://user-images.githubusercontent.com/102183303/185149456-a0b381b4-f275-40c9-b3a9-25a64da19166.gif)
+![ProjetoFinal mp4](https://user-images.githubusercontent.com/102183303/185155569-5ec3f66c-c066-4d9f-8098-9eff9cdb57b0.gif)
+
 
 
 
