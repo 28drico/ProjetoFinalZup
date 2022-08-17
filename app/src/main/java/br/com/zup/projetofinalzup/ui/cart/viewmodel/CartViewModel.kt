@@ -17,10 +17,10 @@ class CartViewModel():ViewModel(){
         viewModelScope.launch {
             cartState.value = ViewState.loading(null)
             try{
-                val withContext = withContext(Dispatchers.Default){
+                val response = withContext(Dispatchers.Default){
                     useCase.getCartList()
                 }
-                cartState.value = withContext
+                cartState.value = response
             }catch(e:Exception){
                 cartState.value = ViewState.error(null,e.message)
             }

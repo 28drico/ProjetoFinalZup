@@ -37,9 +37,10 @@ class DishesUseCase {
         }
     }
 
-    fun cart(item: MenuItem): ViewState<MenuItem> {
+    fun sendToCart(item: MenuItem): ViewState<MenuItem> {
         return try {
-            TODO()
+            repository.insertToCart(item)
+            repository.updateCartList(item)
             ViewState.success(item)
         } catch (e: Exception) {
             ViewState.error(null, e.message)
@@ -47,8 +48,8 @@ class DishesUseCase {
     }
     fun getCartList():ViewState<List<MenuItem>> {
         return try {
-            TODO()
-
+            val list =  repository.getCartList()
+            ViewState.success(list)
         } catch (e: Exception) {
             ViewState.error(null, e.message)
         }

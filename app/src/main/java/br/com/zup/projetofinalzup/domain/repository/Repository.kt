@@ -17,4 +17,9 @@ class Repository(private val dao:FavoriteListDAO){
 
     fun getFavoritedList():List<MenuItem> = dao.getFavoritedList()
 
+    fun insertToCart(item:MenuItem) = dao.insertIntoCart(item)
+
+    fun updateCartList(item:MenuItem)= dao.updateCartList(item)
+
+    fun getCartList():List<MenuItem> = dao.getCartList()
 }
