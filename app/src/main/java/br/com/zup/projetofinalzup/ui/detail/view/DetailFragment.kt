@@ -56,15 +56,6 @@ class DetailFragment : Fragment() {
             val value = "${getString(R.string.item_price)} ${it.value}"
             binding.tvItemPrice.text = value
             updateColor(item)
-//            binding.ivFavorite.setImageDrawable(
-//                ContextCompat.getDrawable(
-//                    binding.root.context,
-//                    if(it.isFavorite == true)
-//                        R.drawable.fav_icon
-//                else
-//                    R.drawable.disfav_icon
-//                )
-//            )
         }
         binding.tvCartAdd.setOnClickListener{
             Toast.makeText(context, "apenas para não quebrar o app",Toast.LENGTH_SHORT).show()
