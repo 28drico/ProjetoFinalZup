@@ -1,6 +1,7 @@
 package br.com.zup.projetofinalzup.ui.home.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
@@ -11,8 +12,8 @@ import br.com.zup.projetofinalzup.R
 import br.com.zup.projetofinalzup.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityHomeBinding
-    private lateinit var toolbar : Toolbar
+    private lateinit var binding: ActivityHomeBinding
+    private lateinit var toolbar: Toolbar
     private val navController: NavController by lazy { findNavController(R.id.nav_host_fragment) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +27,7 @@ class HomeActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController)
         binding.bottomNavigationView.setupWithNavController(navController)
+        setNavControllerDestination()
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
@@ -49,4 +51,22 @@ class HomeActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
+    private fun setNavControllerDestination() {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.endFragment -> hideBottomNav()
+                else -> showBottomNav()
+            }
+        }
+    }
+
+    private fun showBottomNav() {
+        binding.bottomNavigationView.visibility = View.VISIBLE
+    }
+
+    private fun hideBottomNav() {
+        binding.bottomNavigationView.visibility = View.GONE
+    }
+
 }
