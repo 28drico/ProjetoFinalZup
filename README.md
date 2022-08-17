@@ -36,7 +36,7 @@ Em breve disponivel na play store android de seu celular
 
 ○ Aplicação de conceito clean code
 
-##DEPENDÊNCIAS DO PROJETO:
+## DEPENDÊNCIAS DO PROJETO:
 
 dependencies {
 
