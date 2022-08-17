@@ -7,7 +7,6 @@ import br.com.zup.projetofinalzup.R
 import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.domain.singleliveevent.SingleLiveEvent
 import br.com.zup.projetofinalzup.domain.usecase.DishesUseCase
-import br.com.zup.projetofinalzup.ui.menu.viewmodel.MenuViewModel
 import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,6 +30,7 @@ class DetailViewModel: ViewModel(){
             }
         }
     }
+
     fun disfavor(item: MenuItem){
         viewModelScope.launch {
             try{
@@ -53,6 +53,7 @@ class DetailViewModel: ViewModel(){
             }
         }
     }
+
     class DetailModelFactory(): ViewModelProvider.Factory{
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if(modelClass.isAssignableFrom(DetailViewModel::class.java)){
