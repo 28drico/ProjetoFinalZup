@@ -18,13 +18,12 @@ import br.com.zup.projetofinalzup.databinding.FragmentMenuBinding
 import br.com.zup.projetofinalzup.ui.menu.view.adapter.MenuAdapter
 import br.com.zup.projetofinalzup.ui.menu.viewmodel.MenuViewModel
 import br.com.zup.projetofinalzup.ui.viewstate.Status
-import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 
 class MenuFragment : Fragment() {
     private lateinit var binding: FragmentMenuBinding
     private lateinit var viewModel: MenuViewModel
     private lateinit var factory:MenuViewModel.MenuViewModelFactory
-    private val adapter: MenuAdapter by lazy {MenuAdapter(arrayListOf(), this::goToDetail, this::favoriteItem)}
+    private val adapter: MenuAdapter by lazy {MenuAdapter(arrayListOf(), this::goToDetail)}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +45,7 @@ class MenuFragment : Fragment() {
                 Status.SUCCESS -> {
                     binding.rvMenu.adapter = adapter
                     binding.rvMenu.layoutManager = LinearLayoutManager(context)
-                    adapter.updateList(it.data as MutableList<MenuItem>)
+                    adapter.updateList(it.data as ArrayList<MenuItem>)
                     binding.rvMenu.isVisible = true
                     binding.pbLoading.isVisible = false
                 }
@@ -61,34 +60,10 @@ class MenuFragment : Fragment() {
                 else -> {}
             }
         })
-        viewModel.favState.observe(this.viewLifecycleOwner){
-            when(it){
-                ViewState.success(it?.data) -> {
-                    if(it.data?.isFavorite == false){
-//                        Toast.makeText(context,"${it.data.name} ${getString(R.string.item_disfav)}",Toast.LENGTH_SHORT).show()
-//                        adapter.notifyDataSetChanged()
-                    }else if(it.data?.isFavorite == true){
-//                        Toast.makeText(context,"${it.data.name} ${getString(R.string.item_fav)}",Toast.LENGTH_SHORT).show()
-                    }
-//                    adapter.notifyDataSetChanged()
-                }
-                ViewState.error(null, it?.message) -> {
-                    Toast.makeText(context,it.message,Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
     }
+
     fun goToDetail(item: MenuItem){
         val bundle = bundleOf("ITEM_KEY" to item)
         NavHostFragment.findNavController(this).navigate(R.id.action_menuFragment_to_detailFragment,bundle)
-    }
-
-    fun favoriteItem(item:MenuItem){
-        if (item.isFavorite){
-            Toast.makeText(context,"${item.name} ${getString(R.string.item_fav)}",Toast.LENGTH_SHORT).show()
-        }else{
-            Toast.makeText(context,"${item.name} ${getString(R.string.item_disfav)}",Toast.LENGTH_SHORT).show()
-        }
-        viewModel.updateFavList(item)
     }
 }

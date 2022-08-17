@@ -16,7 +16,7 @@ class DetailViewModel: ViewModel(){
     private val useCase = DishesUseCase()
     val listState = SingleLiveEvent<ViewState<List<MenuItem>?>>()
     val favorite = SingleLiveEvent<ViewState<MenuItem>>()
-    val disfavor = SingleLiveEvent<ViewState<MenuItem>>()
+    val cart = SingleLiveEvent<ViewState<MenuItem>>()
 
     fun updateFavoritedList(item: MenuItem){
         viewModelScope.launch {
@@ -31,23 +31,13 @@ class DetailViewModel: ViewModel(){
         }
     }
 
-    fun disfavor(item: MenuItem){
-        viewModelScope.launch {
-            try{
-                val response = withContext(Dispatchers.Default){
-                    useCase.updateFavList(item)
-                }
-                disfavor.value = response
-            }catch(e:Exception){
-                disfavor.value = ViewState.error(null, "${R.string.disfav_error}")
-            }
-        }
-    }
-
     fun sendItemToCart(item:MenuItem){
         viewModelScope.launch {
             try{
-                useCase.cart(item)
+                val withContext = withContext(Dispatchers.Default){
+                    useCase.sendToCart(item)
+                }
+                cart.value = withContext
             }catch(e:Exception){
                 listState.value = ViewState.error(null, "${R.string.cart_error}")
             }

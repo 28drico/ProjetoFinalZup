@@ -31,21 +31,21 @@ class CartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCartBinding.inflate(layoutInflater, container, false)
-        (activity as HomeActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         factory = CartViewModel.CartModelFactory()
         viewModel = ViewModelProvider(this,factory).get(CartViewModel::class.java)
-        binding.bvCloseOrder.setOnClickListener{
-            NavHostFragment.findNavController(this).navigate(R.id.action_cartFragment_to_endFragment)
-        }
+
+        (activity as HomeActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        /**  view não implementada ainda (usecase)
         viewModel.getCartList()
-        **/
+
+        binding.bvCloseOrder.setOnClickListener{
+            NavHostFragment.findNavController(this).navigate(R.id.action_cartFragment_to_endFragment)
+        }
 
         viewModel.cartState.observe(viewLifecycleOwner, Observer{
             when(it.status){
