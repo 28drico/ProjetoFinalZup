@@ -13,7 +13,7 @@ O aplicativo  pertencente a Zup tem como objetivo agilizar o fluxo de pedidos em
 Projeto em desenvolvimento
 
 ## LINK FIGMA DO PROJETO:
-<a href="https://www.figma.com/proto/ZodJIZh5HESj2mF4IzySzy/ProjetoFinal?node-id=17%3A46&scaling=scale-down&page-id=0%3A1&starting-point-node-id=17%3A46" target="_blank">ACESSE PROTÓTIPO FIGMA</a>
+<a href="https://www.figma.com/proto/ZodJIZh5HESj2mF4IzySzy/ProjetoFinal?node-id=17%3A46&scaling=scale-down&page-id=0%3A1&starting-point-node-id=17%3A46" target="_blank">ACESSE PROTÓTIPO NAVEGAVÉL PLATAFORMA FIGMA</a>
 
 
 ## FUNCIONALIDADES E DEMONSTRAÇÃO DA APLICAÇÃO:
@@ -30,7 +30,6 @@ PRINCIPAIS FUNCIONALIDADES:
 
 ○ Fechamento de pedido com demonstrativo de valor do pedido
 
-○ Solicitação de pagamento da conta
 
 ![pzup](https://user-images.githubusercontent.com/102183303/185445172-263fd2d9-6a32-45a2-b88b-7a388b11eb94.gif)
 
