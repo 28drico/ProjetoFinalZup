@@ -4,6 +4,10 @@
     package="br.com.zup.projetofinalzup">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
 
     <application
         android:name=".data.datasource.local.AppApplication"
@@ -17,20 +21,27 @@
         android:theme="@style/Theme.ProjetoFinalZup"
         tools:targetApi="31">
         <activity
+            android:name=".ui.qrcode.QrcodeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.view.HomeActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".ui.splash.view.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
     </application>
 
 </manifest>
