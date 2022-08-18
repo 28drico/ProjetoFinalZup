@@ -28,8 +28,8 @@ PRINCIPAIS FUNCIONALIDADES:
 
 ○ Solicitação de pagamento da conta
 
+![pzup](https://user-images.githubusercontent.com/102183303/185445172-263fd2d9-6a32-45a2-b88b-7a388b11eb94.gif)
 
-![ProjetoFinal mp4](https://user-images.githubusercontent.com/102183303/185155569-5ec3f66c-c066-4d9f-8098-9eff9cdb57b0.gif)
 
 
 
