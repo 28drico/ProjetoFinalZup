@@ -35,5 +35,4 @@ class FavoriteListViewModel():ViewModel() {
             throw IllegalArgumentException("unknown viewmodel class")
         }
     }
-
 }

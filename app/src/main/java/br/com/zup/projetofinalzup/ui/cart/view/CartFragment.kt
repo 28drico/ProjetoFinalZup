@@ -78,4 +78,7 @@ class CartFragment : Fragment() {
         val bundle = bundleOf("ITEM_KEY" to item)
         NavHostFragment.findNavController(this).navigate(R.id.action_cartFragment_to_detailFragment,bundle)
     }
+    fun totalOrder(){
+
+    }
 }
