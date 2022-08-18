@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import br.com.zup.projetofinalzup.R
-import br.com.zup.projetofinalzup.data.datasource.local.AppApplication
+import br.com.zup.projetofinalzup.data.datasource.local.database.AppApplication
 import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.domain.repository.Repository
 import br.com.zup.projetofinalzup.domain.singleliveevent.SingleLiveEvent

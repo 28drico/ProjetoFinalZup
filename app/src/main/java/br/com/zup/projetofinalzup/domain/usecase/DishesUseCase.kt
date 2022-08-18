@@ -1,6 +1,6 @@
 package br.com.zup.projetofinalzup.domain.usecase
 
-import br.com.zup.projetofinalzup.data.datasource.local.AppApplication
+import br.com.zup.projetofinalzup.data.datasource.local.database.AppApplication
 import br.com.zup.projetofinalzup.data.datasource.remote.model.MenuRequest
 import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.domain.repository.Repository

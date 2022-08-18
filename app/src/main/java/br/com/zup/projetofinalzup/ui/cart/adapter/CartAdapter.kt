@@ -7,8 +7,9 @@ import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.CartItemBinding
 import com.squareup.picasso.Picasso
 
-class CartAdapter (private var cartList: List<MenuItem>,
-                   private val clickDetail: (item: MenuItem) -> Unit
+class CartAdapter (
+    private var cartList: List<MenuItem>,
+    private val clickDetail: (item: MenuItem) -> Unit
 ) : RecyclerView.Adapter<CartAdapter.ViewHolder>(){
 
     class ViewHolder(val binding: CartItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -18,7 +19,7 @@ class CartAdapter (private var cartList: List<MenuItem>,
             binding.tvItemValue.text = value.toString()
             binding.tvItemQtd.text = "4"
             Picasso.get().load(item.urlImageProduct).into(binding.ivItemImage)
-
+            TODO()
         }
     }
 
@@ -33,7 +34,6 @@ class CartAdapter (private var cartList: List<MenuItem>,
         holder.binding.cvCart.setOnClickListener{
             clickDetail(menu)
         }
-
     }
 
     override fun getItemCount() = cartList.size

@@ -1,6 +1,6 @@
 package br.com.zup.projetofinalzup.domain.repository
 
-import br.com.zup.projetofinalzup.data.datasource.local.dao.FavoriteListDAO
+import br.com.zup.projetofinalzup.data.datasource.local.database.dao.FavoriteListDAO
 import br.com.zup.projetofinalzup.data.datasource.remote.RetrofitService
 import br.com.zup.projetofinalzup.data.datasource.remote.model.MenuRequest
 import br.com.zup.projetofinalzup.data.model.MenuItem

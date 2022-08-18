@@ -30,9 +30,11 @@ class FavoriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-        (activity as HomeActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         factory = FavoriteListViewModel.FavoriteListViewModelFactory()
         viewModel = ViewModelProvider(this, factory).get(FavoriteListViewModel::class.java)
+
+        (activity as HomeActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
         return binding.root
     }
 
@@ -43,9 +45,9 @@ class FavoriteFragment : Fragment() {
         viewModel.favState.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.EMPTY -> {
-                    Toast.makeText(context, "${it.message}", Toast.LENGTH_LONG).show()
                     binding.ivEmptyListFav.setImageResource(R.drawable.empty_list)
                     binding.ivEmptyListFav.isVisible = true
+                    binding.tvEmptyListFav.isVisible = true
                     binding.pbLoading.isVisible = false
                 }
                 Status.SUCCESS -> {
