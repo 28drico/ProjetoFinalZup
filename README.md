@@ -13,6 +13,8 @@ O aplicativo  pertencente a Zup tem como objetivo agilizar o fluxo de pedidos em
 Projeto em desenvolvimento
 
 ## LINK FIGMA DO PROJETO:
+<a href="https://www.figma.com/proto/ZodJIZh5HESj2mF4IzySzy/ProjetoFinal?node-id=17%3A46&scaling=scale-down&page-id=0%3A1&starting-point-node-id=17%3A46" target="_blank">ACESSE PROTÓTIPO FIGMA</a>
+
 <a href="[https://www.figma.com/proto/ZodJIZh5HESj2mF4IzySzy/ProjetoFinal?node-id=17%3A46&scaling=scale-down&page-id=0%3A1&starting-point-node-id=17%3A46]" target="_blank">ACESSE O PROTÓTIPO FIGMA</a>
 
 
