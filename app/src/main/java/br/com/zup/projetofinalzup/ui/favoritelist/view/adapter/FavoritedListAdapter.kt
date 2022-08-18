@@ -19,7 +19,6 @@ class FavoritedListAdapter (
             val value = "R$ ${item.value}"
             binding.tvItemValue.text = value
             Picasso.get().load(item.urlImageProduct).into(binding.ivItemImage)
-
         }
     }
 

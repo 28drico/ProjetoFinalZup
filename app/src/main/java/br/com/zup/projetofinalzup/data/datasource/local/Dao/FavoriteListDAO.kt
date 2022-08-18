@@ -6,7 +6,7 @@ import br.com.zup.projetofinalzup.data.model.MenuItem
 @Dao
 interface FavoriteListDAO {
 
-    @Query("Select * From item ")
+    @Query("Select * From item")
     fun getFavoritedList(): List<MenuItem>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
@@ -14,6 +14,9 @@ interface FavoriteListDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertIntoDatabase(item: MenuItem)
+
+    @Query("DELETE FROM item WHERE name = :name")
+    fun deleteFromDatabase(name: String)
 
     @Query("Select * From item")
     fun getCartList(): List<MenuItem>
@@ -23,8 +26,5 @@ interface FavoriteListDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertIntoCart(item: MenuItem)
-
-    @Query("DELETE FROM item WHERE name = :name")
-    fun deleteFromDatabase(name: String)
 
 }

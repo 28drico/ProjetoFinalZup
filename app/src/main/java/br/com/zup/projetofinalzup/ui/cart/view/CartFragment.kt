@@ -27,8 +27,7 @@ class CartFragment : Fragment() {
     private val adapter: CartAdapter by lazy { CartAdapter(arrayListOf(), this::goToDetail) }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?
     ): View {
         binding = FragmentCartBinding.inflate(layoutInflater, container, false)
         factory = CartViewModel.CartModelFactory()
@@ -49,6 +48,12 @@ class CartFragment : Fragment() {
 
         viewModel.cartState.observe(viewLifecycleOwner, Observer{
             when(it.status){
+                Status.EMPTY -> {
+                    binding.ivEmptyListFav.setImageResource(R.drawable.empty_list)
+                    binding.ivEmptyListFav.isVisible = true
+                    binding.tvEmptyListFav.isVisible = true
+                    binding.pbLoading.isVisible = false
+                }
                 Status.SUCCESS -> {
                     binding.rvCart.adapter = adapter
                     binding.rvCart.layoutManager = LinearLayoutManager(context)
@@ -72,5 +77,8 @@ class CartFragment : Fragment() {
     fun goToDetail(item: MenuItem){
         val bundle = bundleOf("ITEM_KEY" to item)
         NavHostFragment.findNavController(this).navigate(R.id.action_cartFragment_to_detailFragment,bundle)
+    }
+    fun totalOrder(){
+
     }
 }
