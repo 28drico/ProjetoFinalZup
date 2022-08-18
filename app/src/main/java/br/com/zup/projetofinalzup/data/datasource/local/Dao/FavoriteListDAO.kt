@@ -15,6 +15,9 @@ interface FavoriteListDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertIntoDatabase(item: MenuItem)
 
+    @Query("DELETE FROM item WHERE name = :name")
+    fun deleteFromDatabase(name: String)
+
     @Query("Select * From item")
     fun getCartList(): List<MenuItem>
 
@@ -23,8 +26,5 @@ interface FavoriteListDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertIntoCart(item: MenuItem)
-
-    @Query("DELETE FROM item WHERE name = :name")
-    fun deleteFromDatabase(name: String)
 
 }
