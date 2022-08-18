@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import br.com.zup.projetofinalzup.databinding.ActivitySplashBinding
 import br.com.zup.projetofinalzup.ui.home.view.HomeActivity
+import br.com.zup.projetofinalzup.ui.qrcode.QrcodeActivity
 import java.util.*
 
 class SplashActivity : AppCompatActivity() {
@@ -24,7 +25,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun jump() {
         timer.cancel()
-        startActivity(Intent(this, HomeActivity::class.java))
+        startActivity(Intent(this, QrcodeActivity::class.java))
         this.finish()
     }
 }
