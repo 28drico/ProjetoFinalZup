@@ -79,6 +79,6 @@ class CartFragment : Fragment() {
         NavHostFragment.findNavController(this).navigate(R.id.action_cartFragment_to_detailFragment,bundle)
     }
     fun totalOrder(){
-
+        binding.bvTotalOrder.text = "${R.string.total}"
     }
 }

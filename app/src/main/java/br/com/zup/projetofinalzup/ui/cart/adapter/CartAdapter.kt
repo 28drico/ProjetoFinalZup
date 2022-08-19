@@ -34,7 +34,6 @@ class CartAdapter (
         holder.binding.cvCart.setOnClickListener{
             clickDetail(menu)
         }
-        listSize(menu)
     }
 
     override fun getItemCount() = cartList.size
@@ -42,10 +41,5 @@ class CartAdapter (
     fun updateList(newList:MutableList<MenuItem>){
         cartList = newList
         notifyDataSetChanged()
-    }
-    fun listSize(item:MenuItem){
-        for(item in cartList){
-
-        }
     }
 }
