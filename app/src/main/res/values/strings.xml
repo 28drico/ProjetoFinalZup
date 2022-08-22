@@ -14,14 +14,14 @@
     <string name="item_remove">O item foi removido da sacola!</string>
     <string name="empty_cart">Não há items na sacola!</string>
     <string name="cart_error">Não foi possível adicionar à sacola. Tente novamente.</string>
-    <string name="total">Total R$ 95.00&#x20;</string>
-    <string name="close_order">fechar pedido</string>
+    <string name="total">Total R$&#x20;</string>
+    <string name="close_order">&#x20;&#x20;fechar pedido&#x20;&#x20;</string>
     <string name="closed_order">Pedido Fechado!</string>
     <string name="new_order">&#x20;&#x20;novo pedido&#x20;&#x20;</string>
-    <string name="item_qtd">&#x20;x</string>
-    <string name="item_less">&#x20;&#x20;&#x20;- &#x20;&#x20;</string>
-    <string name="item_qtd_detail">&#x20; 1 &#x20;</string>
-    <string name="item_more">&#x20;&#x20;+&#x20;&#x20;&#x20;</string>
+    <string name="item_qtd">x</string>
+    <string name="item_less">–</string>
+    <string name="item_qtd_detail">1</string>
+    <string name="item_more">+</string>
 
     <!-- Descriptions -->
 

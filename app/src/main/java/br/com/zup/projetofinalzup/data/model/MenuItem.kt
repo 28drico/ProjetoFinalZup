@@ -23,5 +23,7 @@ data class MenuItem (
     @SerializedName("urlImageProduct")
     val urlImageProduct:String,
 
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false,
+
+    var qtd:Int = 1
 ) : Parcelable
