@@ -15,11 +15,11 @@ class CartAdapter (
     class ViewHolder(val binding: CartItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun showInfo(item: MenuItem){
             binding.tvItemTitle.text = item.name
-            val value = "R$ ${item.value}"
+            val value = (item.qtd * item.value).toString()
             binding.tvItemValue.text = value
-            binding.tvItemQtd.text = "1x"
+            val qtd = "${item.qtd}x"
+            binding.tvItemQtd.text = qtd
             Picasso.get().load(item.urlImageProduct).into(binding.ivItemImage)
-
         }
     }
 
@@ -34,7 +34,6 @@ class CartAdapter (
         holder.binding.cvCart.setOnClickListener{
             clickDetail(menu)
         }
-        listSize(menu)
     }
 
     override fun getItemCount() = cartList.size
@@ -42,10 +41,5 @@ class CartAdapter (
     fun updateList(newList:MutableList<MenuItem>){
         cartList = newList
         notifyDataSetChanged()
-    }
-    fun listSize(item:MenuItem){
-        for(item in cartList){
-
-        }
     }
 }

@@ -21,7 +21,7 @@
         android:theme="@style/Theme.ProjetoFinalZup"
         tools:targetApi="31">
         <activity
-            android:name=".ui.qrcode.QrcodeActivity"
+            android:name=".ui.qrcode.view.QrcodeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="false" />
         <activity

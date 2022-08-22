@@ -42,7 +42,28 @@ class DetailFragment : Fragment() {
             binding.tvItemDescription.text = it.description
             val value = "${getString(R.string.item_price)} ${it.value}"
             binding.tvItemPrice.text = value
+            binding.tvQuantity.text = it.qtd.toString()
             updateColor(item)
+        }
+        var num = 1
+        binding.tvLess.setOnClickListener{
+            num = num - 1
+            if(num > 0 ){
+                binding.tvQuantity.text = num.toString()
+                if (item != null) {
+                    item.qtd = num
+                }
+            }
+        }
+
+        binding.tvMore.setOnClickListener{
+            num = num + 1
+            if(num > 0 ){
+                binding.tvQuantity.text = num.toString()
+                if (item != null) {
+                    item.qtd = num
+                }
+            }
         }
         binding.tvCartAdd.setOnClickListener {
             if (item != null) {

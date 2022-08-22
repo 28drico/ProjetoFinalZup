@@ -1,4 +1,4 @@
-package br.com.zup.projetofinalzup.ui.qrcode
+package br.com.zup.projetofinalzup.ui.qrcode.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +26,7 @@ class QrcodeActivity : AppCompatActivity() {
     private fun initScanner() {
         val integrator = IntentIntegrator(this)
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
-        integrator.setPrompt("posicione o leitor no qr code")
+        integrator.setPrompt("${R.string.scan_qrcode}")
         integrator.setTorchEnabled(true)
         integrator.setBeepEnabled(true)
         integrator.initiateScan()
