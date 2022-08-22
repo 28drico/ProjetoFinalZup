@@ -1,50 +1,66 @@
 package br.com.zup.projetofinalzup.domain.usecase
 
-import android.app.Application
-import br.com.zup.projetofinalzup.data.datasource.local.FavoriteListDatabase
-import br.com.zup.projetofinalzup.data.datasource.teste.Item
+import br.com.zup.projetofinalzup.data.datasource.local.AppApplication
+import br.com.zup.projetofinalzup.data.datasource.remote.model.MenuRequest
+import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.domain.repository.Repository
-import br.com.zup.projetofinalzup.ui.ERROR
 import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 
-class DishesUseCase(application: Application) {
-    private val dao = FavoriteListDatabase.getDatabase(application).favoriteListDAO()
+class DishesUseCase {
+    private val dao = AppApplication.getdatabase().favoriteListDAO()
     private val repository = Repository(dao)
 
-    suspend fun getMenuAPI(): ViewState<List<Item>> {
-        return try{
-            val response = repository.getMenuAPI()
-            repository.insertDatabaseList(response.menu)
-            ViewState.Success(response.menu)
-        }catch(e:Exception){
-            getLocalList()
+    suspend fun getMenu(): ViewState<List<MenuItem>> {
+        return try {
+            val response = repository.getMenu(MenuRequest("31037721000108"))
+            ViewState.success(response)
+        } catch (e: Exception) {
+            ViewState.error(null, e.message)
         }
     }
 
-    suspend fun getFavoritedList():ViewState<List<Item>>{
-        return try{
-            val favoritedItems = repository.getFavoritedList()
-            ViewState.Success(favoritedItems)
-        }catch(e:Exception){
-            ViewState.Error(Exception(ERROR))
+    fun updateFavList(item: MenuItem): ViewState<MenuItem> {
+        return try {
+            if (item.isFavorite) {
+                repository.insertIntoDatabase(item)
+            } else {
+                repository.deleteFromDatabase(item)
+            }
+            ViewState.success(item)
+        } catch (e: Exception) {
+            ViewState.error(null, e.message)
         }
     }
 
-    suspend fun updateFavoritedList(menu:Item):ViewState<Item>{
-        return try{
-            repository.updateFavoritedList(menu)
-            ViewState.Success(menu)
-        }catch(e:Exception){
-            ViewState.Error(Exception(ERROR))
+    fun getFavoritedList(): ViewState<List<MenuItem>> {
+        return try {
+            val list = repository.getFavoritedList()
+            if (list.isEmpty()) {
+                ViewState.empty(list)
+            } else {
+                ViewState.success(list)
+            }
+        } catch (e: Exception) {
+            ViewState.error(null, e.message)
         }
     }
 
-    suspend fun getLocalList():ViewState<List<Item>>{
-        return try{
-            val menu = repository.getLocalList()
-            ViewState.Success(menu)
-        }catch(e:Exception){
-            ViewState.Error(Exception(ERROR))
+    fun sendToCart(item: MenuItem): ViewState<MenuItem> {
+        return try {
+            repository.insertToCart(item)
+            repository.updateCartList(item)
+            ViewState.success(item)
+        } catch (e: Exception) {
+            ViewState.error(null, e.message)
+        }
+    }
+
+    fun getCartList(): ViewState<List<MenuItem>> {
+        return try {
+            val list = repository.getCartList()
+            ViewState.success(list)
+        } catch (e: Exception) {
+            ViewState.error(null, e.message)
         }
     }
 }

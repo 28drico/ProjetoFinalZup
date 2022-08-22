@@ -9,57 +9,121 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import br.com.zup.projetofinalzup.R
-import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
-import br.com.zup.projetofinalzup.data.datasource.teste.Item
+import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.FragmentDetailBinding
-import br.com.zup.projetofinalzup.ui.DESFAVORITADO
-import br.com.zup.projetofinalzup.ui.FAVORITADO_SUCESSO
-import br.com.zup.projetofinalzup.ui.menu.viewmodel.MenuViewModel
-
+import br.com.zup.projetofinalzup.ui.detail.viewmodel.DetailViewModel
+import com.squareup.picasso.Picasso
 
 class DetailFragment : Fragment() {
-
     private lateinit var binding: FragmentDetailBinding
-
-    private val viewModel: MenuViewModel by lazy {ViewModelProvider(this)[MenuViewModel::class.java]}
+    private lateinit var viewModel: DetailViewModel
+    private lateinit var factory: DetailViewModel.DetailModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+    ): View {
+        binding = FragmentDetailBinding.inflate(layoutInflater, container, false)
+        factory = DetailViewModel.DetailModelFactory()
+        viewModel = ViewModelProvider(this, factory).get(DetailViewModel::class.java)
+        return binding.root
     }
 
-    private fun favoritedItem(item: Item){
-        binding.ivFavorite.setOnClickListener {
-            menu.isFavorite = !menu.isFavorite
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        dataRecovery()
+    }
 
-            if (menu.isFavorite){
-                Toast.makeText(
-                    context,
-                    FAVORITADO_SUCESSO,
-                    Toast.LENGTH_LONG).show()
-            }else{
-                Toast.makeText(
-                    context,
-                    DESFAVORITADO,
-                    Toast.LENGTH_LONG
-                ).show()
+    private fun dataRecovery() {
+        val item = arguments?.getParcelable<MenuItem>("ITEM_KEY")
+        item?.let {
+            Picasso.get().load(it.urlImageProduct).into(binding.ivItemDetail)
+            binding.tvItemTitle.text = it.name
+            binding.tvItemDescription.text = it.description
+            val value = "${getString(R.string.item_price)} ${it.value}"
+            binding.tvItemPrice.text = value
+            binding.tvQuantity.text = it.qtd.toString()
+            updateColor(item)
+        }
+        var num = 1
+        binding.tvLess.setOnClickListener{
+            num = num - 1
+            if(num > 0 ){
+                binding.tvQuantity.text = num.toString()
+                if (item != null) {
+                    item.qtd = num
+                }
+            }
+        }
+
+        binding.tvMore.setOnClickListener{
+            num = num + 1
+            if(num > 0 ){
+                binding.tvQuantity.text = num.toString()
+                if (item != null) {
+                    item.qtd = num
+                }
+            }
+        }
+        binding.tvCartAdd.setOnClickListener {
+            if (item != null) {
+                addItemCart(item)
+            }
+        }
+        binding.ivFavorite.setOnClickListener {
+            if (item != null) {
+                item.isFavorite = !item.isFavorite
+                viewModel.updateFavoritedList(item)
+                favoriteItem(item)
+                verifyIconFavorite(item.isFavorite)
+
             }
         }
     }
 
+    private fun addItemCart(item: MenuItem) {
+        viewModel.sendItemToCart(item)
+        Toast.makeText(context, R.string.item_add, Toast.LENGTH_SHORT).show()
+    }
 
-    private fun statusfavorito(menu: MenuItem){
+    private fun updateColor(item: MenuItem) {
+        var isFavorite = false
+        var listFavorite = viewModel.favoriteList
+        listFavorite?.forEach {
+            if (it.name == item.name) {
+                isFavorite = true
+            }
+        }
+        verifyIconFavorite(isFavorite)
+    }
+
+    private fun verifyIconFavorite(isFavorite: Boolean) {
         binding.ivFavorite.setImageDrawable(
-            ContextCompat.getDrawable(
+            ContextCompat.getDrawable
+                (
                 binding.root.context,
-                if(menu.isFavorite) {
+                if (isFavorite) {
                     R.drawable.fav_icon
                 } else {
-                    R.drawable.notfav_icon
+                    R.drawable.icon_heart
                 }
             )
         )
+    }
+
+    fun favoriteItem(item: MenuItem) {
+        if (item.isFavorite) {
+            Toast.makeText(
+                context,
+                "${item.name} ${getString(R.string.item_fav)}",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            Toast.makeText(
+                context,
+                "${item.name} ${getString(R.string.item_disfav)}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 }

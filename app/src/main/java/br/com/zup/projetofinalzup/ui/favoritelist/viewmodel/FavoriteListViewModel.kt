@@ -1,45 +1,38 @@
 package br.com.zup.projetofinalzup.ui.favoritelist.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
-import br.com.zup.projetofinalzup.data.datasource.model.MenuItem
+import androidx.lifecycle.*
+import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.domain.singleliveevent.SingleLiveEvent
 import br.com.zup.projetofinalzup.domain.usecase.DishesUseCase
-import br.com.zup.projetofinalzup.ui.ERROR
 import br.com.zup.projetofinalzup.ui.viewstate.ViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FavoriteListViewModel(application: Application): AndroidViewModel(application) {
-    private val useCase = DishesUseCase(application)
-    val favoriteState = SingleLiveEvent<ViewState<List<MenuItem>>>()
-    val disfavorState = SingleLiveEvent<ViewState<MenuItem>>()
+class FavoriteListViewModel():ViewModel() {
+    private val useCase = DishesUseCase()
+    val favState = SingleLiveEvent<ViewState<List<MenuItem>>>()
 
-    fun getFavoritedList(){
+    fun getFavoritedList() {
         viewModelScope.launch {
-            try{
-                val response = withContext(Dispatchers.IO){
+            favState.value = ViewState.loading(null)
+            try {
+                val response = withContext(Dispatchers.Default) {
                     useCase.getFavoritedList()
                 }
-                favoriteState.value = response
-            }catch(e:Exception){
-                favoriteState.value = ViewState.Error(Throwable(ERROR))
+                favState.value = response
+            } catch (e: Exception) {
+                favState.value = ViewState.error(null, e.message)
             }
         }
     }
-    fun disfavorItem(item: MenuItem) {
-        viewModelScope.launch {
-            try {
-                val response = withContext(Dispatchers.IO) {
-                    useCase.updateFavoritedList(item)
-                }
-                disfavorState.value = response
-            } catch (ex: Exception) {
-                disfavorState.value =
-                    ViewState.Error(Throwable("Não foi desfavoritar o filme!"))
+
+    class FavoriteListViewModelFactory(): ViewModelProvider.Factory{
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if(modelClass.isAssignableFrom(FavoriteListViewModel::class.java)){
+                return FavoriteListViewModel() as T
             }
+            throw IllegalArgumentException("unknown viewmodel class")
         }
     }
 }

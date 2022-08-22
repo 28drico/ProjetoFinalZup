@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Menu"
+    <item android:title="@string/menu_icon_title"
         android:id="@+id/Menu"
-        android:icon="@drawable/ic_baseline_local_dining_24"/>
-    <item android:title="Favoritos"
+        android:icon="@drawable/knife_category"/>
+    <item android:title="@string/fav_icon_title"
         android:id="@+id/Favoritos"
-        android:icon="@drawable/ic_baseline_favorite_24"/>
-    <item android:title="Carrinho"
+        android:icon="@drawable/fav_category"/>
+    <item android:title="@string/cart_icon_title"
         android:id="@+id/Carrinho"
-        android:icon="@drawable/ic_baseline_shopping_cart_24"/>
+        android:icon="@drawable/cart_category"/>
 </menu>

@@ -1,19 +1,30 @@
-package br.com.zup.projetofinalzup.data.datasource.local.Dao
+package br.com.zup.projetofinalzup.data.datasource.local.dao
 
 import androidx.room.*
-import br.com.zup.projetofinalzup.data.datasource.teste.Item
+import br.com.zup.projetofinalzup.data.model.MenuItem
 
 @Dao
 interface FavoriteListDAO {
-    @Query("SELECT * FROM menu WHERE isFavorite = 1")
-    fun getFavoritedItems():List<Item>
+
+    @Query("Select * From item")
+    fun getFavoritedList(): List<MenuItem>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateFavoritedItems(item: Item)
-
-    @Query("SELECT * FROM menu ORDER BY name ASC")
-    fun getMenu():List<Item>
+    fun updateFavList(item: MenuItem)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertList(characters: List<Item>)
+    fun insertIntoDatabase(item: MenuItem)
+
+    @Query("DELETE FROM item WHERE name = :name")
+    fun deleteFromDatabase(name: String)
+
+    @Query("Select * From item")
+    fun getCartList(): List<MenuItem>
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    fun updateCartList(item: MenuItem)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertIntoCart(item: MenuItem)
+
 }

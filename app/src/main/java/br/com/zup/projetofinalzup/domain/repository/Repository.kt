@@ -1,23 +1,25 @@
 package br.com.zup.projetofinalzup.domain.repository
 
-import br.com.zup.projetofinalzup.data.datasource.local.Dao.FavoriteListDAO
-import br.com.zup.projetofinalzup.data.datasource.remote.Response
+import br.com.zup.projetofinalzup.data.datasource.local.dao.FavoriteListDAO
 import br.com.zup.projetofinalzup.data.datasource.remote.RetrofitService
-import br.com.zup.projetofinalzup.data.datasource.teste.Item
+import br.com.zup.projetofinalzup.data.datasource.remote.model.MenuRequest
+import br.com.zup.projetofinalzup.data.model.MenuItem
 
 class Repository(private val dao: FavoriteListDAO){
 
-    suspend fun getMenuAPI():Response{
-        return RetrofitService.apiService.getMenu()
+    suspend fun getMenu(menu:MenuRequest):List<MenuItem>{
+        return RetrofitService.getAPI().getMenu(menu)
     }
 
-    fun updateFavoritedList(menu:Item){
-        dao.updateFavoritedItems(menu)
-    }
-    fun getFavoritedList():List<Item> = dao.getFavoritedItems()
+    fun insertIntoDatabase(item:MenuItem) = dao.insertIntoDatabase(item)
 
-    fun insertDatabaseList(list:List<Item>){
-        dao.insertList(list)
-    }
-    fun getLocalList():List<Item> = dao.getMenu()
+    fun getFavoritedList():List<MenuItem> = dao.getFavoritedList()
+
+    fun deleteFromDatabase(item: MenuItem) = dao.deleteFromDatabase(item.name)
+
+    fun insertToCart(item:MenuItem) = dao.insertIntoCart(item)
+
+    fun updateCartList(item:MenuItem)= dao.updateCartList(item)
+
+    fun getCartList():List<MenuItem> = dao.getCartList()
 }

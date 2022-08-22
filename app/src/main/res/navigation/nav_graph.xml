@@ -3,34 +3,62 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashActivity2">
+    app:startDestination="@id/menuFragment">
 
     <fragment
-        android:id="@+id/endFragment"
-        android:name="br.com.zup.projetofinalzup.ui.end.view.EndFragment"
-        android:label="fragment_end"
-        tools:layout="@layout/fragment_end" >
+        android:id="@+id/detailFragment"
+        android:name="br.com.zup.projetofinalzup.ui.detail.view.DetailFragment"
+        android:label=""
+        tools:layout="@layout/fragment_detail" >
         <action
-            android:id="@+id/action_endFragment_to_splashActivity"
-            app:destination="@id/splashActivity2" />
+            android:id="@+id/action_detailFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
-    <activity
-        android:id="@+id/splashActivity2"
-        android:name="br.com.zup.projetofinalzup.ui.splash.view.SplashActivity"
-        android:label="activity_splash"
-        tools:layout="@layout/activity_splash" />
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="br.com.zup.projetofinalzup.ui.menu.view.MenuFragment"
+        android:label=""
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="br.com.zup.projetofinalzup.ui.cart.view.CartFragment"
+        android:label=""
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_endFragment"
+            app:destination="@id/endFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="br.com.zup.projetofinalzup.ui.favoritelist.view.FavoriteFragment"
-        android:label="fragment_favorite"
+        android:label=""
         tools:layout="@layout/fragment_favorite" >
         <action
             android:id="@+id/action_favoriteFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailFragment"
-        android:name="br.com.zup.projetofinalzup.ui.detail.view.DetailFragment"
-        android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        android:id="@+id/endFragment"
+        android:name="br.com.zup.projetofinalzup.ui.end.view.EndFragment"
+        android:label=""
+        tools:layout="@layout/fragment_end" >
+        <action
+            android:id="@+id/action_endFragment_to_splashActivity"
+            app:destination="@id/splashActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/splashActivity"
+        android:name="br.com.zup.projetofinalzup.ui.splash.view.SplashActivity"
+        android:label="activity_splash"
+        tools:layout="@layout/activity_splash" />
 </navigation>

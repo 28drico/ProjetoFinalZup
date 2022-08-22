@@ -1,96 +1,69 @@
 package br.com.zup.projetofinalzup.ui.menu.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.zup.projetofinalzup.R
+import br.com.zup.projetofinalzup.data.model.MenuItem
 import br.com.zup.projetofinalzup.databinding.FragmentMenuBinding
 import br.com.zup.projetofinalzup.ui.menu.view.adapter.MenuAdapter
 import br.com.zup.projetofinalzup.ui.menu.viewmodel.MenuViewModel
-import br.com.zup.projetofinalzup.ui.viewstate.ViewState
+import br.com.zup.projetofinalzup.ui.viewstate.Status
 
 class MenuFragment : Fragment() {
-
     private lateinit var binding: FragmentMenuBinding
-
-    private val viewModel: MenuViewModel by lazy {
-        ViewModelProvider(this)[MenuViewModel::class.java] }
-
-    private val adapter: MenuAdapter by lazy {
-        MenuAdapter(arrayListOf()) }
+    private lateinit var viewModel: MenuViewModel
+    private lateinit var factory:MenuViewModel.MenuViewModelFactory
+    private val adapter: MenuAdapter by lazy {MenuAdapter(arrayListOf(), this::goToDetail)}
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentMenuBinding.inflate(inflater, container, false)
+    ): View {
+        binding = FragmentMenuBinding.inflate(layoutInflater, container, false)
+        factory = MenuViewModel.MenuViewModelFactory()
+        viewModel = ViewModelProvider(this,factory).get(MenuViewModel::class.java)
         return binding.root
     }
-    override fun onResume() {
-        super.onResume()
-        viewModel.getMenu()
-    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpRvMovieList()
-        initObserver()
         viewModel.getMenu()
-    }
-    private fun initObserver() {
-        viewModel.state.observe(this.viewLifecycleOwner) {
 
-            when (it) {
-                is ViewState.Success -> {
-                    adapter.updateList(it.data.toMutableList())
+        viewModel.menu.observe(viewLifecycleOwner,Observer{
+            when(it.status){
+                Status.SUCCESS -> {
+                    binding.rvMenu.adapter = adapter
+                    binding.rvMenu.layoutManager = LinearLayoutManager(context)
+                    adapter.updateList(it.data as ArrayList<MenuItem>)
+                    binding.rvMenu.isVisible = true
+                    binding.pbLoading.isVisible = false
                 }
-                is ViewState.Error -> {
-                    Toast.makeText(
-                        context,
-                        "${it.throwable.message}",
-                        Toast.LENGTH_LONG
-                    ).show()
+                Status.LOADING -> {
+                    binding.pbLoading.isVisible = true
+                    binding.rvMenu.isVisible = false
+                }
+                Status.ERROR -> {
+                    Toast.makeText( context,"${it.message}",Toast.LENGTH_LONG).show()
+                    binding.pbLoading.isVisible = false
                 }
                 else -> {}
             }
-        }
-
-        viewModel.state.observe(this.viewLifecycleOwner) {
-            when (it) {
-                is ViewState.Success -> {
-                    Toast.makeText(
-                        context,
-                        "Filme  foi favoritado com sucesso!",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-                is ViewState.Error -> {
-                    Toast.makeText(
-                        context,
-                        "${it.throwable.message}",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-                else -> {}
-            }
-        }
-
-        viewModel.loading.observe(this.viewLifecycleOwner) {
-            when (it) {
-                is ViewState.Loading -> {
-                    binding.pbLoading.isVisible = it.loading == true
-                }
-                else -> {}
-            }
-        }
+        })
     }
 
-    private fun setUpRvMovieList() {
-        binding.rvMenu.adapter = adapter
-        binding.rvMenu.layoutManager = LinearLayoutManager(context)
+    fun goToDetail(item: MenuItem){
+        val bundle = bundleOf("ITEM_KEY" to item)
+        NavHostFragment.findNavController(this).navigate(R.id.action_menuFragment_to_detailFragment,bundle)
     }
 }
